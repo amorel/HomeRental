@@ -30,10 +30,9 @@
             </div>
         </div>
     </div>
-    @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Index")
-    {
-        @Html.Partial("_Carousel")
-    }
+
+    @RenderSection("carousel", required: false)
+
     <div class="container body-content">
         @RenderBody()
         <hr />
