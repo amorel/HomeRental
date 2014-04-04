@@ -32,6 +32,7 @@
         <option value="br">Brazil</option>
         <option value="ca">Canada</option>
         <option value="fr">France</option>
+        <option value="be">Belgium</option>
         <option value="de">Germany</option>
         <option value="mx">Mexico</option>
         <option value="nz">New Zealand</option>
@@ -172,7 +173,7 @@
                 @* @type {HTMLInputElement} *@
                 (document.getElementById('autocomplete')),
             {
-            types: ['(cities)'],
+            types: ['(regions)'],
             componentRestrictions: countryRestrict
         });
         places = new google.maps.places.PlacesService(map);
@@ -360,5 +361,7 @@
                 document.getElementById('iw-website-row').style.display = 'none';
             }
         }
-        initialize();
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
