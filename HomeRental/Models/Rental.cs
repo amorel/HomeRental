@@ -6,6 +6,10 @@ using System.Data.Entity;
 
 namespace HomeRental.Models
 {
+    public enum PropertyType
+    {
+        Apartment, House, Chalet
+    }
     public class Rental
     {
         public int ID { get; set; }
@@ -17,6 +21,7 @@ namespace HomeRental.Models
         public string Country { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public PropertyType PropertyType { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
     }
 
