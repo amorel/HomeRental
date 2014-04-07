@@ -12,5 +12,10 @@ namespace HomeRental.DAL
         
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 }
