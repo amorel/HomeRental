@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace HomeRental.Models
 {
@@ -13,5 +14,7 @@ namespace HomeRental.Models
             : base("DefaultConnection")
         {
         }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }
