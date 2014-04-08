@@ -28,9 +28,4 @@ namespace HomeRental.Models
         public PropertyType PropertyType { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
     }
-
-    public class RentalDBContext : DbContext
-    {
-        public DbSet<Rental> Rentals { get; set; }
-    }
 }
