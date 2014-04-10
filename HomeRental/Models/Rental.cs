@@ -19,7 +19,7 @@ namespace HomeRental.Models
         [Required] 
         [Column("Price per night")]
         public ushort PricePerNight { get; set; }
-        private int GroupPhotoId { get; set; }
+        public int? GroupPhotoId { get; set; }
         [Required]
         [Column("Property Type")]
         public PropertyType PropertyType { get; set; }
