@@ -8,12 +8,4 @@ namespace HomeRental.Models
     {
         public virtual ICollection<Reservation> Reservations { get; set; }
     }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
-    }
 }

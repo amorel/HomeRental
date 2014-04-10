@@ -12,6 +12,14 @@ namespace HomeRental.Models
     {
         public int ID { get; set; }
         [Required]
+        public string ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; } 
+        [Required]
+        public int RentalId { get; set; }
+        [ForeignKey("RentalId")]
+        public virtual Rental Rental { get; set; } 
+        [Required]
         [Column("Starting Date")]
         public DateTime StartingDate { get; set; }
         [Required]
