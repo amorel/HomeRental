@@ -9,24 +9,44 @@ using System.Diagnostics;
 
 namespace HomeRental.DAL
 {
-    public class ApplicationInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class ApplicationInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            Console.WriteLine("Begin of ApplicationInitializer Class");
-            //var manager = new UserManager<ApplicationUser>(
-            //    new UserStore<ApplicationUser>(
-            //        new ApplicationDbContext()));
+            //***************************
+            //Create Roles and Users
+            //***************************
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    var user = new ApplicationUser()
-            //    {
-            //        UserName = string.Format("User{0}", i.ToString())
-            //    };
-            //    manager.Create(user, string.Format("Password{0}", i.ToString()));
-            //}
+            string admin = "Admin";
+            string password = "123456";
 
+            UserManager.Create(new ApplicationUser() { UserName = "user1" }, "password1" );
+            UserManager.Create(new ApplicationUser() { UserName = "user2" }, "password2");
+            UserManager.Create(new ApplicationUser() { UserName = "user3" }, "password3");
+
+            //Create Role Admin if it does not exist
+            if (!RoleManager.RoleExists(admin))
+            {
+                var roleresult = RoleManager.Create(new IdentityRole(admin));
+            }
+
+            //Create User=Admin with password=123456
+            var user = new ApplicationUser();
+            user.UserName = admin;
+            var adminresult = UserManager.Create(user, password);
+
+            //Add User Admin to Role Admin
+            if (adminresult.Succeeded)
+            {
+                var result = UserManager.AddToRole(user.Id, admin);
+            }
+            base.Seed(context);
+
+            //***************************
+            //Seed Data in Rentals Context
+            //***************************
             var Rentals = new List<Rental>
             {
                 new Rental{ID=1,Capacity=2,PricePerNight=80,GroupPhotoId=null,PropertyType=PropertyType.House,Description="Desc1",Address="chemin de putdael",number=12,PostalCode=1160,City="Auderghem",Country="Belgium",Longitude=null, Latitude=null},
