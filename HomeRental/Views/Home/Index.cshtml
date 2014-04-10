@@ -13,6 +13,34 @@
             <li data-target="#carousel-home" data-slide-to="3"></li>
         </ol>
 
+        <div class="searchbox">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="inputsearch">Where do you want to go ?</label>
+                    <input type="text" class="form-control" id="inputSearch" placeholder="Where do you want to go ?">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="checkin">Check in</label>
+                    <input type="date" class="form-control" id="checkin">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="checkout">Check out</label>
+                    <input type="date" class="form-control" id="checkout">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        1 Guest  <span class="glyphicon glyphicon-user"></span><span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">2 Guest  <span class="glyphicon glyphicon-user"></span></a></li>
+                        <li><a href="#">3 Guest  <span class="glyphicon glyphicon-user"></span></a></li>
+                        <li><a href="#">4 Guest  <span class="glyphicon glyphicon-user"></span></a></li>
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-info">Search</button>
+            </form>
+        </div>
+
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
@@ -73,3 +101,4 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+<script src="~/Scripts/home.js"></script>
