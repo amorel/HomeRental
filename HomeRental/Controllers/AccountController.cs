@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using HomeRental.Models;
+using HomeRental.DAL;
 
 namespace HomeRental.Controllers
 {
