@@ -1,7 +1,14 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section headersection {
+<link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+}
 
+@section scripts {
+<script src="~/Scripts/bootstrap-select.js"></script>
+<script src="~/Scripts/home.js"></script>
+}
 @section carousel
 {
     <div id="carousel-home" class="carousel slide" data-ride="carousel">
@@ -28,14 +35,11 @@
                     <input type="date" class="form-control" id="checkout">
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                        1 Guest  <span class="glyphicon glyphicon-user"></span><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">2 Guest  <span class="glyphicon glyphicon-user"></span></a></li>
-                        <li><a href="#">3 Guest  <span class="glyphicon glyphicon-user"></span></a></li>
-                        <li><a href="#">4 Guest  <span class="glyphicon glyphicon-user"></span></a></li>
-                    </ul>
+                    <select class="selectpicker" data-style="btn-info">
+                        <option data-icon="icon-heart">1 Guest</option>
+                        <option data-icon="icon-heart">2 Guest</option>
+                        <option data-icon="icon-heart">3 Guest</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-info">Search</button>
             </form>
@@ -101,4 +105,3 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
-<script src="~/Scripts/home.js"></script>
