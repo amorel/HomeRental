@@ -11,14 +11,26 @@ using HomeRental.DAL;
 
 namespace HomeRental.Controllers
 {
+    [RoutePrefix("s")]
     public class sController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /s/
-        public ActionResult Index(DateTime? checkin=null, DateTime? checkout=null, int? guests=null, string? id = null)
+        [Route("{address?}")]
+        public ActionResult Index(string address, DateTime? checkin, DateTime? checkout, int? guests)
         {
-            return Content(checkin.ToString() + checkout.ToString() + guests.ToString() + id);
+            if (!String.IsNullOrEmpty(address))
+            {
+                return Content(
+                    String.Format("{0} {1} {2} {3}", 
+                        address, checkin == null ? DateTime.Today : checkin,
+                        checkout == null ? DateTime.Today : checkout, 
+                        guests == null ? 1 : guests
+                        )
+                    );
+            }
+            return Content("vide");
             //return View(db.Rentals.ToList());
         }
 

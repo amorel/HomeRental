@@ -23,12 +23,5 @@ namespace HomeRental.Controllers
 
             return View();
         }
-
-        public ActionResult s(DateTime checkin, DateTime checkout, int guests, string id = null)
-        {
-            ViewBag.Message = checkin.ToString() + checkout.ToString() + guests.ToString() + id;
-
-            return View();
-        }
     }
 }
