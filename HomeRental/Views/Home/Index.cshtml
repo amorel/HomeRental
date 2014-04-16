@@ -7,7 +7,8 @@
 
 @section scripts {
 <script type="text/javascript" src="~/Scripts/bootstrap-select.js"></script>
-<script type="text/javascript" src="~/Scripts/pagesearch.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script type="text/javascript" src="~/Scripts/pagehome.js"></script>
 }
 @section carousel
 {
@@ -24,7 +25,7 @@
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <label class="sr-only" for="inputsearch">Where do you want to go ?</label>
-                    <input type="text" class="form-control" id="inputSearch" placeholder="Where do you want to go ?">
+                    <input type="text" class="form-control" id="autocomplete" placeholder="Where do you want to go ?">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="checkin">Check in</label>
@@ -44,7 +45,7 @@
                         <option data-icon="glyphicon-user">6 Guest</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-info">Search</button>
+                <button type="button" class="btn btn-info">Search</button>
             </form>
         </div>
 
