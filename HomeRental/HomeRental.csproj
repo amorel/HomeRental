@@ -247,6 +247,8 @@
     <Content Include="Views\s\Details.cshtml" />
     <Content Include="Views\s\Edit.cshtml" />
     <Content Include="Views\s\Index.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\_LayoutFull.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
