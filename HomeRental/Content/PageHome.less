@@ -1,0 +1,67 @@
+﻿@gray: #C0C0C0;
+
+#carousel-home {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+
+    .searchbox {
+        position: absolute;
+        top: 48%;
+        left: 17%;
+        z-index: 5;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 4px;
+        border-radius: 4px;
+
+        input[type="text"] {
+            width: 300px;
+        }
+
+        #checkin, #checkout {
+            width: 150px;
+        }
+
+        .iconspec1, .iconspec2 {
+            position: absolute;
+            color: @gray;
+            font-size: 25px;
+            margin-top: 5px;
+            margin-left: -30px;
+            z-index: 6;
+        }
+
+        button {
+            width: 110px;
+        }
+
+        .selectpicker {
+            border-radius: 4px;
+        }
+
+        .bootstrap-select {
+            width: 110px;
+        }
+
+        .dropdown-menu {
+            min-width: 110px;
+        }
+    }
+
+    .carousel-inner {
+        .item {
+            img {
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+
+@media all and (min-width: 768px) {
+    .searchbox {
+        width: 824px;
+    }
+}

@@ -28,8 +28,6 @@ namespace HomeRental
                       "~/Content/bootstrap.css",
                       "~/Content/datepicker.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new LessBundle("~/Content/less").Include("~/Content/*.less"));
         }
     }
 }
