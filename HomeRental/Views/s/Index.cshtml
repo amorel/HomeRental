@@ -31,12 +31,12 @@
             </div>
             <div class="col-md-3">
                 <label class="sr-only" for="checkin">Check in</label>
-                <input type="text" name="checkin" class="form-control" id="checkin">
+                <input type="text" name="checkin" class="form-control" id="checkin" value="@Model.getShortDateCheckin()">
             </div>
             <span class="iconspec1 glyphicon glyphicon-calendar"></span>
             <div class="col-md-3">
                 <label class="sr-only" for="checkout">Check out</label>
-                <input type="text" name="checkout" class="form-control" id="checkout">
+                <input type="text" name="checkout" class="form-control" id="checkout" value="@Model.getShortDateCheckout()">
             </div>
             <span class="iconspec2 glyphicon glyphicon-calendar"></span>
             <div class="col-md-1">
