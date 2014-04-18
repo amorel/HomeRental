@@ -1,7 +1,4 @@
-﻿/*
-* using the autocomplete feature of the Google Places API to help users fill in the information.
-*/
-var placeSearch, autocomplete;
+﻿var placeSearch, autocomplete;
 var componentForm = {
     street_number: 'short_name',
     route: 'long_name',
@@ -69,9 +66,10 @@ function initdatepick() {
         checkout.hide();
     }).data('datepicker');
 }
-
     
-
+/*
+* using the autocomplete feature of the Google Places API to help users fill in the information.
+*/
 function initialize() {
     // Create the autocomplete object
     autocomplete = new google.maps.places.Autocomplete(
