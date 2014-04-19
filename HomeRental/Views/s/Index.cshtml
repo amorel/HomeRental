@@ -13,6 +13,9 @@
     <script type="text/javascript" src="~/Scripts/bootstrap-select.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script type="text/javascript" src="~/Scripts/pagesearch.js"></script>
+    <script>
+        selectpara("@Model.guests");
+    </script>
 }
 <div class="wrapper">
     <div class="inner_left">
@@ -43,12 +46,12 @@
             </div>
             <div class="col-md-3">
                 <select class="selectpicker" data-style="btn-info">
-                    <option data-icon="glyphicon-user">1 Guest</option>
-                    <option data-icon="glyphicon-user">2 Guest</option>
-                    <option data-icon="glyphicon-user">3 Guest</option>
-                    <option data-icon="glyphicon-user">4 Guest</option>
-                    <option data-icon="glyphicon-user">5 Guest</option>
-                    <option data-icon="glyphicon-user">6 Guest</option>
+                    <option value="1" data-icon="glyphicon-user">1 Guest</option>
+                    <option value="2" data-icon="glyphicon-user">2 Guest</option>
+                    <option value="3" data-icon="glyphicon-user">3 Guest</option>
+                    <option value="4" data-icon="glyphicon-user">4 Guest</option>
+                    <option value="5" data-icon="glyphicon-user">5 Guest</option>
+                    <option value="6" data-icon="glyphicon-user">6 Guest</option>
                 </select>
             </div>
         </div>

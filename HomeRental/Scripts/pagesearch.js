@@ -11,12 +11,19 @@ jQuery(document).ready(function () {
 });
 
 /*
-*  Select picker to choose the number of guest
+*  Selection of the correct parameter in selectpicker (nb Guests)
+*/
+function selectpara(parameter) {
+    $('.selectpicker').val(parameter);
+    $('.selectpicker').selectpicker('render');
+}
+
+/*
+*  Init "Select picker" to choose the number of guest
 */
 function initselpick() {
     $('.selectpicker').selectpicker();
 }
-
 
 /*
 * Datepicker to select 2 dates for interval
