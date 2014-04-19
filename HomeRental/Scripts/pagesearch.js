@@ -19,12 +19,28 @@ function filterpara(checkin, checkout, guests) {
     $('.selectpicker').val(guests);
     $('.selectpicker').selectpicker('render');
 
-    //Select of the correct date parameter
-    var date = new Date(checkin.substring(6, 10), checkin.substring(3, 5), checkin.substring(0, 2));
-    $('#checkin').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+    //Select of the correct date parameter on localhost
+    if (checkin != "" && document.location.hostname == "localhost")
+    {
+        var date = new Date(checkin.substring(6, 10), checkin.substring(3, 5), checkin.substring(0, 2));
+        $('#checkin').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+        
+        if (checkout != "")
+        {
+            var date = new Date(checkout.substring(6, 10), checkout.substring(3, 5), checkout.substring(0, 2));
+            $('#checkout').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+        }
 
-    var date = new Date(checkout.substring(6, 10), checkout.substring(3, 5), checkout.substring(0, 2));
-    $('#checkout').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+    }
+    //Select of the correct date parameter on Azure
+    else if (checkin != "")
+    {
+        $("#checkin").val(checkin);
+
+        if (checkout != "") {
+            $('#checkout').val(checkout);
+        }
+    }
 }
 
 /*
@@ -32,7 +48,8 @@ function filterpara(checkin, checkout, guests) {
 *  http://www.eyecon.ro/bootstrap-datepicker/
 *
 */
-function initdatepick() {
+function initdatepick()
+{
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
@@ -49,7 +66,6 @@ function initdatepick() {
         checkin.hide();
         $('#checkout')[0].focus();
     }).data('datepicker');
-
 
     var checkout = $('#checkout').datepicker({
         onRender: function (date) {

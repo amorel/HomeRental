@@ -1,6 +1,7 @@
-# HomeRental
+# HomeRental (under construction)
 
 ###Demo
+
 Deployed on Azure => <http://homerental.azurewebsites.net>
 
 This is a professional project, a demo site made with ASP.NET MVC 5.
