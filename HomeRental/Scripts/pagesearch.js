@@ -5,28 +5,34 @@ jQuery(document).ready(function () {
     $("#submitsearch").click(function () { submitresearch(); });
     $(".iconspec1").click(function () { $("#checkin").focus() });
     $(".iconspec2").click(function () { $("#checkout").focus() });
-    initselpick();
-    initdatepick();
     initialize();
 });
 
 /*
 *  Selection of the correct parameter in selectpicker (nb Guests)
 */
-function selectpara(parameter) {
-    $('.selectpicker').val(parameter);
+function filterpara(checkin, checkout, guests) {
+    //init datepicker
+    initdatepick();
+
+    //Selection of the correct parameter in selectpicker (nb Guests)
+    $('.selectpicker').val(guests);
     $('.selectpicker').selectpicker('render');
+
+    //Select of the correct date parameter
+    var date = new Date(checkin.substring(6, 10), checkin.substring(3, 5), checkin.substring(0, 2));
+    alert(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+    $('#checkin').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+
+    var date = new Date(checkout.substring(6, 10), checkout.substring(3, 5), checkout.substring(0, 2));
+    alert(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
+    $('#checkout').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
 }
 
 /*
-*  Init "Select picker" to choose the number of guest
-*/
-function initselpick() {
-    $('.selectpicker').selectpicker();
-}
-
-/*
-* Datepicker to select 2 dates for interval
+*  Datepicker to select 2 dates for interval
+*  http://www.eyecon.ro/bootstrap-datepicker/
+*
 */
 function initdatepick() {
     var nowTemp = new Date();
@@ -45,6 +51,8 @@ function initdatepick() {
         checkin.hide();
         $('#checkout')[0].focus();
     }).data('datepicker');
+
+
     var checkout = $('#checkout').datepicker({
         onRender: function (date) {
             return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';

@@ -14,7 +14,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script type="text/javascript" src="~/Scripts/pagesearch.js"></script>
     <script>
-        selectpara("@Model.guests");
+        filterpara("@Model.getShortDateCheckin()", "@Model.getShortDateCheckout()", "@Model.guests");
     </script>
 }
 <div class="wrapper">
@@ -34,12 +34,12 @@
             </div>
             <div class="col-md-3">
                 <label class="sr-only" for="checkin">Check in</label>
-                <input type="text" name="checkin" class="form-control" id="checkin" value="@Model.getShortDateCheckin()">
+                <input type="text" name="checkin" class="form-control" id="checkin">
             </div>
             <span class="iconspec1 glyphicon glyphicon-calendar"></span>
             <div class="col-md-3">
                 <label class="sr-only" for="checkout">Check out</label>
-                <input type="text" name="checkout" class="form-control" id="checkout" value="@Model.getShortDateCheckout()">
+                <input type="text" name="checkout" class="form-control" id="checkout">
             </div>
             <span class="iconspec2 glyphicon glyphicon-calendar"></span>
             <div class="col-md-1">

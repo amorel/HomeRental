@@ -31,7 +31,9 @@ jQuery(document).ready(function () {
 
 
 /*
-*  Select picker to choose the number of guest
+*  Init "Select picker" to choose the number of guest
+*  http://silviomoreto.github.io/bootstrap-select/
+*
 */
 function initselpick() {
     $('.selectpicker').selectpicker();
@@ -39,7 +41,9 @@ function initselpick() {
 
 
 /*
-* Datepicker to select 2 dates for interval
+*  Datepicker to select 2 dates for interval
+*  http://www.eyecon.ro/bootstrap-datepicker/
+*
 */
 function initdatepick() {
     var nowTemp = new Date();
