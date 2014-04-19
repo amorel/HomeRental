@@ -202,8 +202,9 @@
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Content\PageHome.less" />
-    <Content Include="Content\PageSearch.less" />
+    <Content Include="Content\pagesearch.less" />
+    <Content Include="Content\pagehome.less" />
+    <None Include="Properties\PublishProfiles\HomeRental.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

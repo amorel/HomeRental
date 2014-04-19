@@ -21,11 +21,9 @@ function filterpara(checkin, checkout, guests) {
 
     //Select of the correct date parameter
     var date = new Date(checkin.substring(6, 10), checkin.substring(3, 5), checkin.substring(0, 2));
-    alert(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
     $('#checkin').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
 
     var date = new Date(checkout.substring(6, 10), checkout.substring(3, 5), checkout.substring(0, 2));
-    alert(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
     $('#checkout').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
 }
 
