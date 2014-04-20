@@ -1,23 +1,4 @@
-﻿var placeSearch, autocomplete;
-var componentForm = {
-    street_number: 'short_name',
-    route: 'long_name',
-    locality: 'long_name',
-    administrative_area_level_1: 'short_name',
-    country: 'long_name',
-    postal_code: 'short_name'
-};
-var addressvalid = '';
-var componentresult = {
-    street_number: '',
-    route: '',
-    locality: '',
-    administrative_area_level_1: '',
-    country: '',
-    postal_code: ''
-};
-
-/*
+﻿/*
 * Onload features
 */
 jQuery(document).ready(function () {
@@ -76,38 +57,17 @@ function initdatepick() {
 */
 function initialize() {
     // Create the autocomplete object
-    autocomplete = new google.maps.places.Autocomplete(
+    var autocomplete = new google.maps.places.Autocomplete(
         /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
         { types: ['geocode'] });
-    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        fillInAddress();
-    });
-}
-
-function fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-
-    for (var property in componentresult) {
-        componentresult[property] = '';
-    }
-
-    // Get each component of the address from the place details
-    // and fill the corresponding field on the form.
-    for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
-        if (componentForm[addressType]) {
-            var val = place.address_components[i][componentForm[addressType]];
-            componentresult[addressType] = val;
-        }
-    }
-    addressvalid = $("#autocomplete").val();
 }
 
 /*
 * Submit research
 */
 function submitresearch() {
+    var addressvalid = $("#autocomplete").val();
+    if (addressvalid == "") return;
     //convert address "Chaussée de Wavre 17, Brussels, Belgium" => "Chaussée-de-Wavre-17--Brussels--Belgium"
     var result = addressvalid.replace(/, /g, "--");
     result = result.replace(/  /g, " ");

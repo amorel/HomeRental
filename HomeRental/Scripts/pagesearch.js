@@ -3,11 +3,6 @@
 */
 jQuery(document).ready(function () {
 
-    var mapOptions;
-    var input;
-    var autocomplete;
-    var geocoder;
-
     $("#submitsearch").click(function () { submitresearch(); });
     $(".iconspec1").click(function () { $("#checkin").focus() });
     $(".iconspec2").click(function () { $("#checkout").focus() });
@@ -101,14 +96,14 @@ function initdatepick() {
 * Initialize Google MAP API
 */
 function initialize() {
-    mapOptions = {
+    var mapOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 2
     };
-    map = new google.maps.Map(document.getElementById('map-canvas'),
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-    geocoder = new google.maps.Geocoder();
+    var geocoder = new google.maps.Geocoder();
 
     $(document).ready(function (e) {
         var request = {
@@ -117,6 +112,7 @@ function initialize() {
         geocoder.geocode(request, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
+                map.setZoom(13);
                 var bounds = results[0].geometry.bounds;
                 map.fitBounds(bounds);
                 var latlng = results[0].geometry.location;
@@ -130,7 +126,7 @@ function initialize() {
 
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    autocomplete = new google.maps.places.Autocomplete(input);
+    var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
 
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
