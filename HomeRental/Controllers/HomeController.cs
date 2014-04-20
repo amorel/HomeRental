@@ -12,7 +12,7 @@ namespace HomeRental.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "This is a professional project, a DEMO site made with ASP.NET MVC 5.";
 
             return View();
         }
