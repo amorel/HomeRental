@@ -1,7 +1,12 @@
 using System;
+using System.Text;
 
 namespace HomeRental.Models
 {
+    /*
+    *  Class that encapsulates the query GET string from the URL of the search page.
+    * 
+    */
     public class cQueryString
     {
         public string address { get; set; }

@@ -2,11 +2,36 @@
 * Onload features
 */
 jQuery(document).ready(function () {
+
+    var mapOptions;
+    var input;
+    var autocomplete;
+    var geocoder;
+
     $("#submitsearch").click(function () { submitresearch(); });
     $(".iconspec1").click(function () { $("#checkin").focus() });
     $(".iconspec2").click(function () { $("#checkout").focus() });
+    
+    $("#pac-input").val(getAddress());
     initialize();
+
 });
+
+
+/*
+*  Regex to get address parameter
+*  Format of the address
+*/
+function getAddress() {
+    //Regex to get address parameter
+    var patt = /\/s\/(.*)\?/g;
+    var result = patt.exec(decodeURI(location.href));
+    var address = result[1];
+    //convert address "Chaussée-de-Wavre-17--Brussels--Belgium" => "Chaussée de Wavre 17, Brussels, Belgium"
+    address = address.replace(/--/g, ", ");
+    address = address.replace(/-/g, " ");
+    return address;
+}
 
 /*
 *  Selection of the correct parameter in selectpicker (nb Guests)
@@ -20,21 +45,18 @@ function filterpara(checkin, checkout, guests) {
     $('.selectpicker').selectpicker('render');
 
     //Select of the correct date parameter on localhost
-    if (checkin != "" && document.location.hostname == "localhost")
-    {
+    if (checkin != "" && document.location.hostname == "localhost") {
         var date = new Date(checkin.substring(6, 10), checkin.substring(3, 5), checkin.substring(0, 2));
         $('#checkin').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
-        
-        if (checkout != "")
-        {
+
+        if (checkout != "") {
             var date = new Date(checkout.substring(6, 10), checkout.substring(3, 5), checkout.substring(0, 2));
             $('#checkout').val(date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear());
         }
 
     }
-    //Select of the correct date parameter on Azure
-    else if (checkin != "")
-    {
+        //Select of the correct date parameter on Azure
+    else if (checkin != "") {
         $("#checkin").val(checkin);
 
         if (checkout != "") {
@@ -48,8 +70,7 @@ function filterpara(checkin, checkout, guests) {
 *  http://www.eyecon.ro/bootstrap-datepicker/
 *
 */
-function initdatepick()
-{
+function initdatepick() {
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
@@ -80,19 +101,36 @@ function initdatepick()
 * Initialize Google MAP API
 */
 function initialize() {
-    var mapOptions = {
+    mapOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 2
     };
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
+    map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-    var input = /** @type {HTMLInputElement} */(
+    geocoder = new google.maps.Geocoder();
+
+    $(document).ready(function (e) {
+        var request = {
+            address : $("#pac-input").val()
+        }
+        geocoder.geocode(request, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var bounds = results[0].geometry.bounds;
+                map.fitBounds(bounds);
+                var latlng = results[0].geometry.location;
+                console.log(latlng.toString());
+            }
+        });
+    });
+
+    input = /** @type {HTMLInputElement} */(
         document.getElementById('pac-input'));
 
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
 
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -106,7 +144,7 @@ function initialize() {
             map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17);  // Why 17? Because it looks good.
+            map.setZoom(17);
         }
 
 
@@ -119,17 +157,4 @@ function initialize() {
             ].join(' ');
         }
     });
-
-    // Sets a listener on a radio button to change the filter type on Places
-    // Autocomplete.
-    function setupClickListener(id, types) {
-        var radioButton = document.getElementById(id);
-        google.maps.event.addDomListener(radioButton, 'click', function () {
-            autocomplete.setTypes(types);
-        });
-    }
-
-    setupClickListener('changetype-all', []);
-    setupClickListener('changetype-establishment', ['establishment']);
-    setupClickListener('changetype-geocode', ['geocode']);
 }
