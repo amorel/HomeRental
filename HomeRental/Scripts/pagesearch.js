@@ -23,8 +23,9 @@ function getAddress() {
     var result = patt.exec(decodeURI(location.href));
     var address = result[1];
     //convert address "Chaussée-de-Wavre-17--Brussels--Belgium" => "Chaussée de Wavre 17, Brussels, Belgium"
+    address = address.replace(/---/g, "/");
     address = address.replace(/--/g, ", ");
-    address = address.replace(/-/g, " ");
+    address = address.replace(/_/g, " ");
     return address;
 }
 

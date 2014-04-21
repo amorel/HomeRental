@@ -69,10 +69,10 @@ function submitresearch() {
     var addressvalid = $("#autocomplete").val();
     if (addressvalid == "") return;
     //convert address "Chaussée de Wavre 17, Brussels, Belgium" => "Chaussée-de-Wavre-17--Brussels--Belgium"
-    var result = addressvalid.replace(/, /g, "--");
+    var result = addressvalid.replace(/\//g, "---");
+    result = result.replace(/, /g, "--");
     result = result.replace(/  /g, " ");
-    result = result.replace(/ /g, "-");
-
+    result = result.replace(/ /g, "_");
     //Creation URL with Query String.
     var checkin = $("#checkin").val()==""?"":"checkin=" + $("#checkin").val() + "&";
     var checkout = $("#checkout").val() == "" ? "" : "checkout=" + $("#checkout").val() + "&";
