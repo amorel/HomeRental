@@ -3,10 +3,9 @@ using System.Text;
 
 namespace HomeRental.Models
 {
-    /*
-    *  Class that encapsulates the query GET string from the URL of the search page.
-    * 
-    */
+    /// <summary>
+    /// Class that encapsulates the query GET string from the URL of the search page.
+    /// </summary>
     public class cQueryString
     {
         public string address { get; set; }
@@ -14,15 +13,39 @@ namespace HomeRental.Models
         public DateTime? checkout { get; set; }
         public int? guests { get; set; } 
 
+        /// <summary>
+        /// Get the short date from checkin if valid
+        /// </summary>
         public String getShortDateCheckin()
         {
-            String date = checkin.HasValue ? checkin.Value.Date.ToShortDateString():"";
-            return date;
+            if(checkin.HasValue)
+            {
+                int result = DateTime.Compare(checkin.Value, DateTime.Now.Date);
+                return result > 0 ? rightShortDateFormatToDatePicker(checkin) : "";
+            }
+            return "";
         }
+
+        /// <summary>
+        /// Get the short date from checkout if valid
+        /// </summary>
         public String getShortDateCheckout()
         {
-            String date = checkout.HasValue ? checkout.Value.Date.ToShortDateString() : "";
-            return date;
+            if(getShortDateCheckin()!="" && checkout.HasValue)
+            {
+                int result = DateTime.Compare(checkout.Value, checkin.Value);
+                return result > 0 ? rightShortDateFormatToDatePicker(checkout) : "";
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Get right format for the datepicker element
+        /// </summary>
+        private String rightShortDateFormatToDatePicker(DateTime? date)
+        { 
+            string strDate = date.Value.Date.ToShortDateString();
+            return date.Value.Date.Day < 10 ? "0" + strDate : strDate; 
         }
     }
 }
