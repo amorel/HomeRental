@@ -14,26 +14,29 @@ jQuery(document).ready(function () {
 *  Ajax method that retrieves data locations found in the area.
 */
 function getAjaxDataLocationInArea(bnds) {
+
+    var datecheckin = $("#checkin").val().length = 9 ? "0" + $("#checkin").val() : $("#checkin").val();
+    var datecheckout = $("#checkout").val().length = 9 ? "0" + $("#checkout").val() : $("#checkout").val();
+    
     var request = {
-        bounds: bnds,
-        checkin: $("#checkin").val(),
-        checkout: $("#checkout").val(),
+        bounds: { northEastLatLng: { Lat: bnds.Ba.j, Lng: bnds.Ba.k }, southWestLatLng: { Lat: bnds.ra.j, Lng: bnds.ra.k } },
+        checkin: datecheckin.substr(3, 3) + datecheckin.substr(0, 3) + datecheckin.substr(6, 4),
+        checkout: datecheckout.substr(3, 3) + datecheckout.substr(0, 3) + datecheckout.substr(6, 4),
         guests: $("#guests").val()
     };
-    console.log(request);
 
     $.ajax({
         type: "POST",
         url: '/s/LocationInAreaAjax',
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        data: { a: "result of Ajax Request" },
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(request),
         dataType: "json",
         success: successFunc,
         error: errorFunc
     });
 
     function successFunc(data, status) {
-        alert(data);
+        console.log(data);
     }
 
     function errorFunc() {
@@ -79,7 +82,7 @@ function filterpara(checkin, checkout, guests) {
         }
 
     }
-        //Select of the correct date parameter on Azure
+    //Select of the correct date parameter on Hosting server
     else if (checkin != "") {
         $("#checkin").val(checkin);
 

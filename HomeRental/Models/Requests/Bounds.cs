@@ -7,7 +7,7 @@ namespace HomeRental.Models.Requests
 {
     public class Bounds
     {
-        public LatLng latlng { get; set; }
-        public LatLng jlatlng { get; set; } 
+        public LatLng northEastLatLng { get; set; }
+        public LatLng southWestLatLng { get; set; } 
     }
 }

@@ -7,9 +7,9 @@ namespace HomeRental.Models.Requests
 {
     public class RequestSearchAjax
     {
-        public Bounds bds { get; set; }
-        public DateTime checkin { get; set; }
-        public DateTime checkout { get; set; }
-        public int guests { get; set; } 
+        public Bounds bounds { get; set; }
+        public DateTime? checkin { get; set; }
+        public DateTime? checkout { get; set; }
+        public int? guests { get; set; } 
     }
 }

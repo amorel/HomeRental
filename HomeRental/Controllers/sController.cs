@@ -17,10 +17,10 @@ namespace HomeRental.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        [Route("LocationInAreaAjax/{a?}")]
-        public JsonResult LocationInAreaAjax(string a)
+        [Route("LocationInAreaAjax")]
+        public JsonResult LocationInAreaAjax(RequestSearchAjax requestSearchAjax)
         {
-            return Json(a);
+            return Json(requestSearchAjax);
         }
 
         // GET: /s/
