@@ -29,6 +29,7 @@ function getAjaxDataLocationInArea(bnds) {
         type: "POST",
         url: '/s/LocationInAreaAjax',
         contentType: "application/json; charset=utf-8",
+        processData: false,
         data: JSON.stringify(request),
         dataType: "json",
         success: successFunc,
@@ -189,5 +190,17 @@ function initialize() {
 
     google.maps.event.addListener(map, 'dragend', function () {
         getAjaxDataLocationInArea(map.getBounds());
+    });
+
+    var cpt = 0;
+    google.maps.event.addListener(map, 'bounds_changed', function () {
+        cpt++;
+        var cpt2=cpt;
+        window.setTimeout(function () {
+            if (cpt == cpt2) {
+                getAjaxDataLocationInArea(map.getBounds());
+                cpt = 0;
+            }
+        }, 1000);
     });
 }
