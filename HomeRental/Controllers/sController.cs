@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using HomeRental.Models;
 using HomeRental.DAL;
+using HomeRental.Models.Requests;
 
 namespace HomeRental.Controllers
 {
@@ -15,6 +16,12 @@ namespace HomeRental.Controllers
     public class sController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        [Route("LocationInAreaAjax/{a?}")]
+        public JsonResult LocationInAreaAjax(string a)
+        {
+            return Json(a);
+        }
 
         // GET: /s/
         [Route("{address?}")]

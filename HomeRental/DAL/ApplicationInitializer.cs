@@ -50,9 +50,9 @@ namespace HomeRental.DAL
             //************************************
             var Rentals = new List<Rental>
             {
-                new Rental{ID=1,Capacity=2,PricePerNight=80,GroupPhotoId=null,PropertyType=PropertyType.House,Description="Desc1",Address="chemin de putdael",number=12,PostalCode=1160,City="Auderghem",Country="Belgium",Longitude=50.8193813, Latitude=4.439141500000005},
-                new Rental{ID=2,Capacity=1,PricePerNight=60,GroupPhotoId=null,PropertyType=PropertyType.Apartment,Description="Desc2",Address="rue Auguste Orts",number=25,PostalCode=1000,City="Bruxelles",Country="Belgium",Longitude=50.8488048, Latitude=4.3483678000000054},
-                new Rental{ID=3,Capacity=2,PricePerNight=120,GroupPhotoId=null,PropertyType=PropertyType.House,Description="Desc3",Address="Corniche Verte",number=9,PostalCode=1150,City="Woluwe-Saint-Pierre",Country="Belgium",Longitude=50.8293766, Latitude=4.467397600000027},
+                new Rental{ID=1,Capacity=2,PricePerNight=80,GroupPhotoId=null,PropertyType=PropertyType.House,Description="Desc1",Address="chemin de putdael",number=12,PostalCode=1160,City="Auderghem",Country="Belgium",Latitude=50.8193813, Longitude=4.439141500000005},
+                new Rental{ID=2,Capacity=1,PricePerNight=60,GroupPhotoId=null,PropertyType=PropertyType.Apartment,Description="Desc2",Address="rue Auguste Orts",number=25,PostalCode=1000,City="Bruxelles",Country="Belgium",Latitude=50.8488048, Longitude=4.3483678000000054},
+                new Rental{ID=3,Capacity=2,PricePerNight=120,GroupPhotoId=null,PropertyType=PropertyType.House,Description="Desc3",Address="Corniche Verte",number=9,PostalCode=1150,City="Woluwe-Saint-Pierre",Country="Belgium",Latitude=50.8293766, Longitude=4.467397600000027},
             };
             Rentals.ForEach(s => context.Rentals.Add(s));
             context.SaveChanges();

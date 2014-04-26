@@ -4,14 +4,42 @@
 jQuery(document).ready(function () {
 
     $("#submitsearch").click(function () { submitresearch(); });
-    $(".iconspec1").click(function () { $("#checkin").focus() });
-    $(".iconspec2").click(function () { $("#checkout").focus() });
-    
+    $(".iconspec1").click(function () { $("#checkin").focus(); });
+    $(".iconspec2").click(function () { $("#checkout").focus(); });
     $("#pac-input").val(getAddress());
     initialize();
-
 });
 
+/*
+*  Ajax method that retrieves data locations found in the area.
+*/
+function getAjaxDataLocationInArea(bnds) {
+    var request = {
+        bounds: bnds,
+        checkin: $("#checkin").val(),
+        checkout: $("#checkout").val(),
+        guests: $("#guests").val()
+    };
+    console.log(request);
+
+    $.ajax({
+        type: "POST",
+        url: '/s/LocationInAreaAjax',
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        data: { a: "result of Ajax Request" },
+        dataType: "json",
+        success: successFunc,
+        error: errorFunc
+    });
+
+    function successFunc(data, status) {
+        alert(data);
+    }
+
+    function errorFunc() {
+        alert('error');
+    }
+};
 
 /*
 *  Regex to get address parameter
@@ -108,13 +136,14 @@ function initialize() {
 
     $(document).ready(function (e) {
         var request = {
-            address : $("#pac-input").val()
+            address: $("#pac-input").val()
         }
         geocoder.geocode(request, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
                 map.setZoom(13);
                 var bounds = results[0].geometry.bounds;
+
                 map.fitBounds(bounds);
                 var latlng = results[0].geometry.location;
                 console.log(latlng.toString());
@@ -153,5 +182,9 @@ function initialize() {
               (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
         }
+    });
+
+    google.maps.event.addListener(map, 'dragend', function () {
+        getAjaxDataLocationInArea(map.getBounds());
     });
 }

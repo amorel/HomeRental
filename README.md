@@ -2,7 +2,9 @@
 
 ##DEMO
 
-Deployed on Azure => <http://homerental.azurewebsites.net>
+<del>Deployed on Azure => <http://homerental.azurewebsites.net> </del>
+
+Deployed on Somee => <http://www.homerental.somee.com/>
 
 This is a professional project, a DEMO site made with ASP.NET MVC 5.
 
