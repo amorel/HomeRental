@@ -41,7 +41,8 @@ namespace HomeRental.Models
         public string City { get; set; }
         [Required] 
         public string Country { get; set; }
-        public LatLng position { get; set; } 
+        public double Latitude { get; set; }
+        public double Longitude { get; set; } 
         public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }
