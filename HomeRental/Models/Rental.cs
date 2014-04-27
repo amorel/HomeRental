@@ -19,7 +19,7 @@ namespace HomeRental.Models
         public int Capacity { get; set; }
         [Required] 
         [Column("Price per night")]
-        public ushort PricePerNight { get; set; }
+        public int PricePerNight { get; set; }
         public int? GroupPhotoId { get; set; }
         [Required]
         [Column("Property Type")]
@@ -32,7 +32,7 @@ namespace HomeRental.Models
         public string Address { get; set; }
         [Required]
         [Range(0, 9999)]
-        public ushort number { get; set; }
+        public int number { get; set; }
         [Required]
         [Column("Postal Code")]
         [Range(0, 99999)]

@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using HomeRental.Models;
 using HomeRental.DAL;
 using HomeRental.Models.SubModels;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace HomeRental.Controllers
 {
@@ -20,25 +22,30 @@ namespace HomeRental.Controllers
         [Route("LocationInAreaAjax")]
         public JsonResult LocationInAreaAjax(RequestSearchAjax requestSearchAjax)
         {
-            //var locations = db.Rentals.Where(l => inBounds(l.position, requestSearchAjax.bounds));
-            return Json(requestSearchAjax);
-        }
+            Bounds bnds = requestSearchAjax.bounds;
+            var locations = from r in db.Rentals
+                            where   r.Latitude < bnds.northEastLatLng.Lat &&
+                                    r.Latitude > bnds.southWestLatLng.Lat &&
+                                    r.Longitude < bnds.northEastLatLng.Lng &&
+                                    r.Longitude > bnds.southWestLatLng.Lng
+                            select new 
+                            {
+                                r.ID,
+                                r.Capacity,
+                                r.PricePerNight,
+                                r.GroupPhotoId,
+                                r.PropertyType,
+                                r.Description,
+                                r.Address,
+                                r.number,
+                                r.PostalCode,
+                                r.City,
+                                r.Country,
+                                r.Latitude,
+                                r.Longitude
+                            };
 
-        private bool inBounds(LatLng position, Bounds bounds)
-        {
-            //var eastBound = point.long < bounds.NE.long;
-            //var westBound = point.long > bounds.SW.long;
-            //var inLong;
-
-            //if (bounds.NE.long < bounds.SW.long) {
-            //    inLong = eastBound || westBound;
-            //} else {
-            //    inLong = eastBound && westBound;
-            //}
-
-            //var inLat = point.lat > bounds.SW.lat && point.lat < bounds.NE.lat;
-            //return inLat && inLong;
-            return true;
+            return Json(locations.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         // GET: /s/
