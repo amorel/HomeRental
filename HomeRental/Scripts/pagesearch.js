@@ -37,11 +37,12 @@ function getAjaxDataLocationInArea(bnds) {
     });
 
     function successFunc(data, status) {
+        $("#status").html('Ajax Success !').css("color", "green");;
         console.log(data);
     }
 
     function errorFunc() {
-        alert('error');
+        $("#status").html('Ajax error !').css("color", "red");
     }
 };
 

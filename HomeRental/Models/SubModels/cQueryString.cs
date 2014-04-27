@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace HomeRental.Models
+namespace HomeRental.Models.SubModels
 {
     /// <summary>
     /// Class that encapsulates the query GET string from the URL of the search page.

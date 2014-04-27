@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using HomeRental.Models;
 using HomeRental.DAL;
-using HomeRental.Models.Requests;
+using HomeRental.Models.SubModels;
 
 namespace HomeRental.Controllers
 {
@@ -20,7 +20,25 @@ namespace HomeRental.Controllers
         [Route("LocationInAreaAjax")]
         public JsonResult LocationInAreaAjax(RequestSearchAjax requestSearchAjax)
         {
+            //var locations = db.Rentals.Where(l => inBounds(l.position, requestSearchAjax.bounds));
             return Json(requestSearchAjax);
+        }
+
+        private bool inBounds(LatLng position, Bounds bounds)
+        {
+            //var eastBound = point.long < bounds.NE.long;
+            //var westBound = point.long > bounds.SW.long;
+            //var inLong;
+
+            //if (bounds.NE.long < bounds.SW.long) {
+            //    inLong = eastBound || westBound;
+            //} else {
+            //    inLong = eastBound && westBound;
+            //}
+
+            //var inLat = point.lat > bounds.SW.lat && point.lat < bounds.NE.lat;
+            //return inLat && inLong;
+            return true;
         }
 
         // GET: /s/
