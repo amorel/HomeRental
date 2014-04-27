@@ -188,19 +188,7 @@ function initialize() {
         }
     });
 
-    google.maps.event.addListener(map, 'dragend', function () {
+    google.maps.event.addListener(map, 'idle', function () {
         getAjaxDataLocationInArea(map.getBounds());
-    });
-
-    var cpt = 0;
-    google.maps.event.addListener(map, 'bounds_changed', function () {
-        cpt++;
-        var cpt2=cpt;
-        window.setTimeout(function () {
-            if (cpt == cpt2) {
-                getAjaxDataLocationInArea(map.getBounds());
-                cpt = 0;
-            }
-        }, 1000);
     });
 }
