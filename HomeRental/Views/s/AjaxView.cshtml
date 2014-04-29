@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HomeRental.Models.RentalView>
+
+@{
+    Layout = "";
+}
+
+@foreach (var rental in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => rental.PropertyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => rental.number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => rental.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => rental.PricePerNight)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => rental.Capacity)
+        </th>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", { id=item.ID })  |
+            @Html.ActionLink("Delete", "Delete", { id=item.ID })
+        </td>*@
+    </tr>
+}
+

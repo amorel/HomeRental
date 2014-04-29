@@ -20,32 +20,30 @@ namespace HomeRental.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [Route("LocationInAreaAjax")]
-        public JsonResult LocationInAreaAjax(RequestSearchAjax requestSearchAjax)
+        public ActionResult AjaxView(RequestSearchAjax requestSearchAjax)
         {
             Bounds bnds = requestSearchAjax.bounds;
-            var locations = from r in db.Rentals
+            var rentals = from r in db.Rentals
                             where   r.Latitude < bnds.northEastLatLng.Lat &&
                                     r.Latitude > bnds.southWestLatLng.Lat &&
                                     r.Longitude < bnds.northEastLatLng.Lng &&
                                     r.Longitude > bnds.southWestLatLng.Lng
-                            select new 
-                            {
-                                r.ID,
-                                r.Capacity,
-                                r.PricePerNight,
-                                r.GroupPhotoId,
-                                r.PropertyType,
-                                r.Description,
-                                r.Address,
-                                r.number,
-                                r.PostalCode,
-                                r.City,
-                                r.Country,
-                                r.Latitude,
-                                r.Longitude
+                            select new RentalView {
+                                ID = r.ID,
+                                Capacity = r.Capacity,
+                                PricePerNight = r.PricePerNight,
+                                GroupPhotoId = r.GroupPhotoId,
+                                PropertyType = r.PropertyType,
+                                Description = r.Description,
+                                Address = r.Address,
+                                number = r.number,
+                                PostalCode = r.PostalCode,
+                                City = r.City,
+                                Country = r.Country,
+                                Latitude = r.Latitude,
+                                Longitude = r.Longitude
                             };
-
-            return Json(locations.ToList(), JsonRequestBehavior.AllowGet);
+            return View(rentals);
         }
 
         // GET: /s/

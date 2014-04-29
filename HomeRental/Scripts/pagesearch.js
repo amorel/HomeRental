@@ -31,14 +31,14 @@ function getAjaxDataLocationInArea(bnds) {
         contentType: "application/json; charset=utf-8",
         processData: false,
         data: JSON.stringify(request),
-        dataType: "json",
+        dataType: "html",
         success: successFunc,
         error: errorFunc
     });
 
     function successFunc(data, status) {
         $("#status").html('Ajax Success !').css("color", "green");;
-        console.log(data);
+        $("#ajaxframe").html(data);
     }
 
     function errorFunc() {
