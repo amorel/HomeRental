@@ -174,10 +174,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\RentalView.cs" />
+    <Compile Include="Models\ViewModel\RentalView.cs" />
     <Compile Include="Models\SubModels\Bounds.cs" />
     <Compile Include="Models\SubModels\cQueryString.cs" />
-    <Compile Include="Models\GroupPhoto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SubModels\LatLng.cs" />
     <Compile Include="Models\SubModels\RequestSearchAjax.cs" />

@@ -8,5 +8,7 @@ namespace HomeRental.Models
         public int ID { get; set; }
         [Required] 
         public Image image { get; set; }
+        [Required]
+        public int GrpPhotoId { get; set; } 
     }
 }
