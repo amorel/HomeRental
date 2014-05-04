@@ -1,4 +1,5 @@
-﻿/*
+﻿var map;
+/*
 * Onload features
 */
 jQuery(document).ready(function () {
@@ -9,6 +10,15 @@ jQuery(document).ready(function () {
     $("#pac-input").val(getAddress());
     initialize();
 });
+
+function addMarker(Lat, Lng)
+{
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(Lat.replace(/\,/g, '.'), Lng.replace(/\,/g, '.')),
+        map: map,
+        title: 'Hello World!'
+    });
+}
 
 /*
 *  Ajax method that retrieves data locations found in the area.
@@ -134,9 +144,8 @@ function initialize() {
         center: new google.maps.LatLng(0, 0),
         zoom: 2
     };
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
+    map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-
     var geocoder = new google.maps.Geocoder();
 
     $(document).ready(function (e) {
@@ -164,6 +173,14 @@ function initialize() {
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
 
+
+    //var marker = new google.maps.Marker({
+    //    position: new google.maps.LatLng(50.8193813, 4.43914150000001),
+    //    map: map,
+    //    title: 'Hello World!'
+    //});
+
+
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace();
         if (!place.geometry) {
@@ -178,6 +195,7 @@ function initialize() {
             map.setZoom(17);
         }
 
+        
 
         var address = '';
         if (place.address_components) {

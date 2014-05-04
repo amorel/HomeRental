@@ -4,6 +4,7 @@
     Layout = "";
 }
 
+
 @foreach (var rental in Model) {
     <tr>
         <td>
@@ -27,5 +28,10 @@
             @Html.ActionLink("Delete", "Delete", { id=item.ID })
         </td>*@
     </tr>
+    
+    <script>
+        addMarker("@rental.Latitude", "@rental.Longitude");
+    </script>
+    
 }
 
