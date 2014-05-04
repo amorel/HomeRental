@@ -15,8 +15,7 @@ function addMarker(Lat, Lng)
 {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(Lat.replace(/\,/g, '.'), Lng.replace(/\,/g, '.')),
-        map: map,
-        title: 'Hello World!'
+        map: map
     });
 }
 
