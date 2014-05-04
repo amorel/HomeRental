@@ -7,6 +7,8 @@ namespace HomeRental.Models
     {
         public int ID { get; set; }
         [Required] 
-        public Image image { get; set; }
+        public string PathImage { get; set; }
+        public int RentalId { get; set; }
+        public virtual Rental Rental { get; set; }
     }
 }

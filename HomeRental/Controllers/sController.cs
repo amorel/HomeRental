@@ -32,7 +32,6 @@ namespace HomeRental.Controllers
                                 ID = r.ID,
                                 Capacity = r.Capacity,
                                 PricePerNight = r.PricePerNight,
-                                GroupPhotoId = r.GroupPhotoId,
                                 PropertyType = r.PropertyType,
                                 Description = r.Description,
                                 Address = r.Address,
@@ -41,7 +40,9 @@ namespace HomeRental.Controllers
                                 City = r.City,
                                 Country = r.Country,
                                 Latitude = r.Latitude,
-                                Longitude = r.Longitude
+                                Longitude = r.Longitude,
+                                Reservations = r.Reservations,
+                                Photos = r.Photos
                             };
             return View(rentals);
         }

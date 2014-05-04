@@ -14,13 +14,17 @@ namespace HomeRental.Models
     }
     public class Rental
     {
+        public Rental()
+        {
+            Reservations = new List<Reservation>();
+            Photos = new List<Photo>();
+        }
         public int ID { get; set; }
         [Required] 
         public int Capacity { get; set; }
         [Required] 
         [Column("Price per night")]
         public int PricePerNight { get; set; }
-        public int? GroupPhotoId { get; set; }
         [Required]
         [Column("Property Type")]
         public PropertyType PropertyType { get; set; }
@@ -42,7 +46,8 @@ namespace HomeRental.Models
         [Required] 
         public string Country { get; set; }
         public double Latitude { get; set; }
-        public double Longitude { get; set; } 
+        public double Longitude { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }
