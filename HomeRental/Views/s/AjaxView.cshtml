@@ -4,34 +4,45 @@
     Layout = "";
 }
 
+@foreach (var rental in Model)
+{
+    <div id="carousel@(rental.ID)" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @{var index = 0;}
+            @foreach (var photo in rental.Photos)
+            {
+                <li data-target="#carousel@(rental.ID)" data-slide-to="@index" class= @{if (index == 0) { <text> "active" </text>   }}></li>
+index++;
+            }
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            @{index = 0;}
+            @foreach (var photo in rental.Photos)
+            {
 
-@foreach (var rental in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => rental.PropertyType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => rental.number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => rental.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => rental.PricePerNight)
-        </td>
-        <th>
-            @Html.DisplayFor(modelItem => rental.Capacity)
-        </th>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", { id=item.ID })  |
-            @Html.ActionLink("Delete", "Delete", { id=item.ID })
-        </td>*@
-    </tr>
+                <div class="item @{if (index == 0) { <text> active </text>  }}">
+                    <img src="@Url.Content(photo.PathImage)" alt="@(rental.PricePerNight)Euro">
+                    <div class="carousel-caption">
+                        @*...*@
+                    </div>
+                </div>
+
+                                   index++;
+            }
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel@(rental.ID)" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel@(rental.ID)" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
     
     <script>
         addMarker("@rental.Latitude", "@rental.Longitude");
-    </script>
-    
-}
 
+    </script>
+}

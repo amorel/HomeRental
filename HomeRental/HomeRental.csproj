@@ -281,7 +281,6 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_LayoutFull.cshtml" />
     <Content Include="Views\s\AjaxView.cshtml" />
-    <Content Include="Views\s\AjaxView - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
