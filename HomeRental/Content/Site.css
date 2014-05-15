@@ -51,7 +51,7 @@ input[type="checkbox"].input-validation-error {
     position:absolute;
     top:50%;
     left:50%;
-    background:#000 url(../img/ajax-loader.gif) no-repeat center center;
+    background:#000 url(../images/ajax-loader.gif) no-repeat center center;
     margin:-23px 0px 0px -23px;
     z-index:100;
     -moz-border-radius: 10px;
