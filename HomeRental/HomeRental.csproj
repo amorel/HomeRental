@@ -221,6 +221,12 @@
     <Content Include="images\4\4.jpg" />
     <Content Include="images\4\5.jpg" />
     <Content Include="images\4\6.jpg" />
+    <Content Include="images\5\1.jpg" />
+    <Content Include="images\5\2.jpg" />
+    <Content Include="images\5\3.jpg" />
+    <Content Include="images\5\4.jpg" />
+    <Content Include="images\5\5.jpg" />
+    <Content Include="images\5\6.jpg" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\black.png" />
     <Content Include="images\carou01.png" />
@@ -251,7 +257,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\pagesearch.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

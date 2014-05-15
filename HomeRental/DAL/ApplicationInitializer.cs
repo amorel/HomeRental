@@ -51,7 +51,9 @@ namespace HomeRental.DAL
             //************************************
             Rental rental1 = new Rental{ID=1,Capacity=2,PricePerNight=80,PropertyType=PropertyType.House,Description="Desc1",Address="chemin de putdael",number=12,PostalCode=1160,City="Auderghem",Country="Belgium",Latitude=50.8193813,Longitude=4.439141500000005};
             Rental rental2 = new Rental{ID=2,Capacity=1,PricePerNight=60,PropertyType=PropertyType.Apartment,Description="Desc2",Address="rue Auguste Orts",number=25,PostalCode=1000,City="Bruxelles",Country="Belgium",Latitude=50.8488048,Longitude=4.3483678000000054};
-            Rental rental3 = new Rental{ID=3,Capacity=2,PricePerNight=120,PropertyType=PropertyType.House,Description="Desc3",Address="Corniche Verte",number=9,PostalCode=1150,City="Woluwe-Saint-Pierre",Country="Belgium",Latitude=50.8293766,Longitude=4.467397600000027};
+            Rental rental3 = new Rental { ID = 3, Capacity = 2, PricePerNight = 120, PropertyType = PropertyType.House, Description = "Desc3", Address = "Corniche Verte", number = 9, PostalCode = 1150, City = "Woluwe-Saint-Pierre", Country = "Belgium", Latitude = 50.8293766, Longitude = 4.467397600000027 };
+            Rental rental4 = new Rental { ID = 4, Capacity = 5, PricePerNight = 75, PropertyType = PropertyType.Chalet, Description = "Desc4", Address = "Rue d'Irlande", number = 57, PostalCode = 1060, City = "Sint-Gilles", Country = "Belgium", Latitude = 50.825885, Longitude = 4.351920 };
+            Rental rental5 = new Rental { ID = 5, Capacity = 3, PricePerNight = 200, PropertyType = PropertyType.Apartment, Description = "Desc5", Address = "Rue des Champs Elysées", number = 15, PostalCode = 1050, City = "Ixelles", Country = "Belgium", Latitude = 50.831795, Longitude = 4.365922 };
 
             Photo photo1 = new Photo{ID=1,PathImage="~/images/1/1.jpg",Rental=rental1};
             Photo photo2 = new Photo{ID=2,PathImage="~/images/1/2.jpg",Rental=rental1};
@@ -75,16 +77,23 @@ namespace HomeRental.DAL
             Photo photo18 = new Photo{ID=18,PathImage="~/images/3/5.jpg",Rental=rental3};
             Photo photo19 = new Photo{ID=19,PathImage="~/images/3/6.jpg",Rental=rental3};
 
-            //Photo photo20 = new Photo{ID=20,PathImage="~/images/4/1.jpg"};
-            //Photo photo21 = new Photo{ID=21,PathImage="~/images/4/2.jpg"};
-            //Photo photo22 = new Photo{ID=22,PathImage="~/images/4/3.jpg"};
-            //Photo photo23 = new Photo{ID=23,PathImage="~/images/4/4.jpg"};
-            //Photo photo24 = new Photo{ID=24,PathImage="~/images/4/5.jpg"};
-            //Photo photo25 = new Photo{ID=25,PathImage="~/images/4/6.jpg"};
+            Photo photo20 = new Photo { ID = 20, PathImage = "~/images/4/1.jpg", Rental = rental4 };
+            Photo photo21 = new Photo { ID = 21, PathImage = "~/images/4/2.jpg", Rental = rental4 };
+            Photo photo22 = new Photo { ID = 22, PathImage = "~/images/4/3.jpg", Rental = rental4 };
+            Photo photo23 = new Photo { ID = 23, PathImage = "~/images/4/4.jpg", Rental = rental4 };
+            Photo photo24 = new Photo { ID = 24, PathImage = "~/images/4/5.jpg", Rental = rental4 };
+            Photo photo25 = new Photo { ID = 25, PathImage = "~/images/4/6.jpg", Rental = rental4 };
+
+            Photo photo26 = new Photo { ID = 26, PathImage = "~/images/5/1.jpg", Rental = rental5 };
+            Photo photo27 = new Photo { ID = 27, PathImage = "~/images/5/2.jpg", Rental = rental5 };
+            Photo photo28 = new Photo { ID = 28, PathImage = "~/images/5/3.jpg", Rental = rental5 };
+            Photo photo29 = new Photo { ID = 29, PathImage = "~/images/5/4.jpg", Rental = rental5 };
+            Photo photo30 = new Photo { ID = 30, PathImage = "~/images/5/5.jpg", Rental = rental5 };
+            Photo photo31 = new Photo { ID = 31, PathImage = "~/images/5/6.jpg", Rental = rental5 };
 
             var Photos = new List<Photo>
             {
-                photo1,photo2,photo3,photo4,photo5,photo6,photo7,photo8,photo9,photo10,photo11,photo12,photo13,photo14,photo15,photo16,photo17,photo18,photo19
+                photo1,photo2,photo3,photo4,photo5,photo6,photo7,photo8,photo9,photo10,photo11,photo12,photo13,photo14,photo15,photo16,photo17,photo18,photo19,photo20,photo21,photo22,photo23,photo24,photo25,photo26,photo27,photo28,photo29,photo30,photo31
             };
             Photos.ForEach(s => context.Photos.Add(s));
 
@@ -110,11 +119,27 @@ namespace HomeRental.DAL
             rental3.Photos.Add(photo18);
             rental3.Photos.Add(photo19);
 
+            rental4.Photos.Add(photo20);
+            rental4.Photos.Add(photo21);
+            rental4.Photos.Add(photo22);
+            rental4.Photos.Add(photo23);
+            rental4.Photos.Add(photo24);
+            rental4.Photos.Add(photo25);
+
+            rental5.Photos.Add(photo26);
+            rental5.Photos.Add(photo27);
+            rental5.Photos.Add(photo28);
+            rental5.Photos.Add(photo29);
+            rental5.Photos.Add(photo30);
+            rental5.Photos.Add(photo31);
+
             var Rentals = new List<Rental>
             {
                 rental1,
                 rental2,
-                rental3
+                rental3,
+                rental4,
+                rental5
             };
             Rentals.ForEach(s => context.Rentals.Add(s));
 
