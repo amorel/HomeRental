@@ -90,7 +90,7 @@ function filterpara(checkin, checkout, guests) {
         $('#checkin').val(checkin.substring(3, 5) + "/" + checkin.substring(0, 2) + "/" + checkin.substring(6, 10));
 
         if (checkout != "") {
-            $('#checkout').val(checkin.substring(3, 5) + "/" + checkin.substring(0, 2) + "/" + checkin.substring(6, 10));
+            $('#checkout').val(checkout.substring(3, 5) + "/" + checkout.substring(0, 2) + "/" + checkout.substring(6, 10));
         }
 
     }
