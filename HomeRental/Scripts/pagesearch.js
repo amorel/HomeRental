@@ -87,10 +87,13 @@ function filterpara(checkin, checkout, guests) {
 
     //Select of the correct date parameter on localhost
     if (checkin != "" && document.location.hostname == "localhost") {
-        $('#checkin').val(checkin.substring(3, 5) + "/" + checkin.substring(0, 2) + "/" + checkin.substring(6, 10));
+        var date = new Date(checkin.substring(3, 5) + "/" + checkin.substring(0, 2) + "/" + checkin.substring(6, 10));
+        $('#checkin').datepicker('setValue', date);
 
         if (checkout != "") {
-            $('#checkout').val(checkout.substring(3, 5) + "/" + checkout.substring(0, 2) + "/" + checkout.substring(6, 10));
+            var date = new Date(checkout.substring(3, 5) + "/" + checkout.substring(0, 2) + "/" + checkout.substring(6, 10));
+            $('#checkout').datepicker('setValue', date);
+
         }
 
     }

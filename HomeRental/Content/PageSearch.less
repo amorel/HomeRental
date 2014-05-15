@@ -67,6 +67,10 @@ body {
             width: 60%;
             bottom: 18%;
 
+            .boxfilter div {
+                margin-top: 10px;
+            }
+
             .boxfilter {
                 border-bottom: 1px solid @gray;
                 height: 150px;
@@ -76,21 +80,24 @@ body {
                 .titrefilter {
                     color: @gray;
                     margin-top: 5px;
+                    width: 50px;
                 }
 
                 #checkin, #checkout {
                     width: 150px;
+                    position: relative;
+                    display: inline;
                 }
 
-                .iconspec1, .iconspec2 {
-                    position: absolute;
-                    padding-top: 20px;
+
+                .glyphicon-calendar {
+                    position: relative;
+                    right: 35px;
+                    top: 8px;
                     color: @gray;
                     font-size: 25px;
-                    margin-top: 1px;
-                    margin-left: -60px;
-                    z-index: 6;
                 }
+
 
                 .selectpicker {
                     border-radius: 4px;
@@ -212,14 +219,13 @@ body {
 
                 .vignette {
                     float: left;
-                    padding-left: 5px;
+                    padding: 3px;
 
                     .vign-footer {
                         position: relative;
                         border: 1px solid @gray;
                         width: auto;
                         height: 50px;
-                        margin-bottom: 10px;
 
                         .owner {
                             width: 50px;
