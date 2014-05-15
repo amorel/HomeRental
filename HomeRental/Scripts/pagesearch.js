@@ -24,6 +24,8 @@ function addMarker(Lat, Lng)
 */
 function getAjaxDataLocationInArea(bnds) {
 
+    $(".contentLoad").show();
+
     var datecheckin = $("#checkin").val().length = 9 ? "0" + $("#checkin").val() : $("#checkin").val();
     var datecheckout = $("#checkout").val().length = 9 ? "0" + $("#checkout").val() : $("#checkout").val();
     
@@ -48,6 +50,7 @@ function getAjaxDataLocationInArea(bnds) {
     function successFunc(data, status) {
         $("#status").html('Ajax Success !').css("color", "green");;
         $("#ajaxframe").html(data);
+        $(".contentLoad").hide();
     }
 
     function errorFunc() {
