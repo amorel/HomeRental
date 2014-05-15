@@ -7,42 +7,31 @@
 @foreach (var rental in Model)
 {
     <div id="carousel@(rental.ID)" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
+        <div class="carousel-inner">
             @{var index = 0;}
             @foreach (var photo in rental.Photos)
             {
-                <li data-target="#carousel@(rental.ID)" data-slide-to="@index" class= @{if (index == 0) { <text> "active" </text>   }}></li>
-index++;
-            }
-        </ol>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            @{index = 0;}
-            @foreach (var photo in rental.Photos)
-            {
-
                 <div class="item @{if (index == 0) { <text> active </text>  }}">
-                    <img src="@Url.Content(photo.PathImage)" alt="@(rental.PricePerNight)Euro">
-                    <div class="carousel-caption">
-                        @*...*@
-                    </div>
+                    <img @{if (index == 0) { <text> src=</text>} else { <text> lazy-src=</text> }}"@Url.Content(photo.PathImage)">
                 </div>
-
-                                   index++;
+                index++;
             }
         </div>
+
+        <!-- Image loading icon -->
+        <div class="loading hide"><img src="@Url.Content("~/images/black.png")" /></div>
+
         <!-- Controls -->
-        <a class="left carousel-control" href="#carousel@(rental.ID)" data-slide="prev">
+        <a class="left carousel-control carousel@(rental.ID)" href="#carousel@(rental.ID)" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="right carousel-control" href="#carousel@(rental.ID)" data-slide="next">
+        <a class="right carousel-control carousel@(rental.ID)" href="#carousel@(rental.ID)" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-    
+
     <script>
         addMarker("@rental.Latitude", "@rental.Longitude");
-
+        $('#carousel@(rental.ID)').carousel({ interval: false });
     </script>
 }
