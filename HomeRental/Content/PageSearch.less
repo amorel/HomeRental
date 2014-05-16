@@ -1,4 +1,5 @@
 ﻿@gray: #C0C0C0;
+@blue: #46b8da;
 
 body {
     margin: 0;
@@ -119,7 +120,7 @@ body {
                 top: 60%;
                 left: 0;
                 right: 0;
-                z-index:99;
+                z-index: 99;
 
                 .ball {
                     background-color: rgba(0,0,0,0);
@@ -232,6 +233,14 @@ body {
                             width: 50px;
                             height: 100%;
                             border-right: 1px solid @gray;
+                            display:inline-block;
+                        }
+                        .desc{
+                            padding-top:5px;
+                            padding-left:10px;
+                            position:absolute;
+                            display:inline-block;
+
                         }
 
                         .price {
@@ -241,6 +250,13 @@ body {
                             border-left: 1px solid @gray;
                             right: 0px;
                             top: 0px;
+                            text-align: center;
+
+                            .currency {
+                                font-size: 20px;
+                                padding: 10px;
+                                color: @blue;
+                            }
                         }
                     }
                 }
