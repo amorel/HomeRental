@@ -5,8 +5,8 @@
 jQuery(document).ready(function () {
 
     $("#submitsearch").click(function () { submitresearch(); });
-    $(".iconspec1").click(function () { $("#checkin").focus(); });
-    $(".iconspec2").click(function () { $("#checkout").focus(); });
+    $("#gly1").click(function () { $("#checkin").focus(); });
+    $("#gly2").click(function () { $("#checkout").focus(); });
     $("#pac-input").val(getAddress());
     initializeGoogleMaps();
 });
