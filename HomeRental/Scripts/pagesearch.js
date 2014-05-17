@@ -9,6 +9,7 @@ jQuery(document).ready(function () {
     $("#gly2").click(function () { $("#checkout").focus(); });
     $("#pac-input").val(getAddress());
     initializeGoogleMaps();
+    $("#ex2").slider();
 });
 
 function addMarker(Lat, Lng)

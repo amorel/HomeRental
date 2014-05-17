@@ -31,6 +31,7 @@ namespace HomeRental
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-select.css",
                       "~/Content/datepicker.css",
+                      "~/Content/slider.css",
                       "~/Content/site.css"));
         }
     }

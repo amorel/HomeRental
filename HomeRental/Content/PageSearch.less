@@ -68,10 +68,6 @@ body {
             width: 60%;
             bottom: 18%;
 
-            .boxfilter div {
-                margin-top: 10px;
-            }
-
             .boxfilter {
                 border-bottom: 1px solid @gray;
                 height: 150px;
@@ -108,10 +104,37 @@ body {
 
                 .bootstrap-select {
                     width: 110px;
+                    margin-top: 10px;
                 }
 
                 .dropdown-menu {
                     min-width: 110px;
+                }
+                /* ==========================================================================
+                    Sliders
+                   ========================================================================== */
+                #slider {
+                    margin-left: 8px;
+                    color: @gray;
+                    font-size: 18px;
+
+                    .slider.slider-horizontal {
+                        margin: 10px 10px;
+
+                        .slider-handle.round {
+                            position: absolute;
+                            width: 20px;
+                            height: 20px;
+                            border: 1px solid #EFF2F7;
+                            background: @gray;
+                            cursor: pointer;
+                        }
+
+                        .slider-selection {
+                            background-image: none;
+                            background-color: #3598db;
+                        }
+                    }
                 }
             }
 
