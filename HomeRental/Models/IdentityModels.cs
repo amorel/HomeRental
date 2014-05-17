@@ -10,6 +10,7 @@ namespace HomeRental.Models
         {
             Reservations = new List<Reservation>();
         }
+        public string HashMail { get; set; } 
         public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace HomeRental.Controllers
                                     r.Longitude > bnds.southWestLatLng.Lng
                             select new RentalView {
                                 ID = r.ID,
+                                OwnerUser = r.OwnerUser,
                                 Capacity = r.Capacity,
                                 PricePerNight = r.PricePerNight,
                                 PropertyType = r.PropertyType,
@@ -44,6 +45,7 @@ namespace HomeRental.Controllers
                                 Reservations = r.Reservations,
                                 Photos = r.Photos
                             };
+
             return View(rentals);
         }
 

@@ -24,9 +24,10 @@ namespace HomeRental.DAL
             string admin = "Admin";
             string password = "123456";
 
-            UserManager.Create(new ApplicationUser() { UserName = "user1" }, "password1" );
-            UserManager.Create(new ApplicationUser() { UserName = "user2" }, "password2");
-            UserManager.Create(new ApplicationUser() { UserName = "user3" }, "password3");
+            UserManager.Create(new ApplicationUser() { UserName = "user1", HashMail = "767fc9c115a1b989744c755db47feb60" }, "password1");
+            UserManager.Create(new ApplicationUser() { UserName = "user2", HashMail = "22bd03ace6f176bfe0c593650bcf45d8" }, "password2");
+            UserManager.Create(new ApplicationUser() { UserName = "user3", HashMail = "205e460b479e2e5b48aec07710c08d50" }, "password3");
+            UserManager.Create(new ApplicationUser() { UserName = "user4", HashMail = "f553c130b11b71282b7c022ca82355e9" }, "password4");
 
             //Create Role Admin if it does not exist
             if (!RoleManager.RoleExists(admin))
@@ -37,6 +38,7 @@ namespace HomeRental.DAL
             //Create User=Admin with password=123456
             var user = new ApplicationUser();
             user.UserName = admin;
+            user.HashMail = "0f748331c0993a973da0847fedc64ba6";
             var adminresult = UserManager.Create(user, password);
 
             //Add User Admin to Role Admin
@@ -46,14 +48,21 @@ namespace HomeRental.DAL
             }
             base.Seed(context);
 
+            //id of the Users
+            string user1Id = UserManager.FindByName("user1").Id;
+            string user2Id = UserManager.FindByName("user2").Id;
+            string user3Id = UserManager.FindByName("user3").Id;
+            string user4Id = UserManager.FindByName("user4").Id;
+            string user5Id = UserManager.FindByName("Admin").Id;
+
             //************************************
             //Seed Data in Rentals & Photos Context (Table)
             //************************************
-            Rental rental1 = new Rental{ID=1,Capacity=2,PricePerNight=80,PropertyType=PropertyType.House,Description="Desc1",Address="chemin de putdael",number=12,PostalCode=1160,City="Auderghem",Country="Belgium",Latitude=50.8193813,Longitude=4.439141500000005};
-            Rental rental2 = new Rental{ID=2,Capacity=1,PricePerNight=60,PropertyType=PropertyType.Apartment,Description="Desc2",Address="rue Auguste Orts",number=25,PostalCode=1000,City="Bruxelles",Country="Belgium",Latitude=50.8488048,Longitude=4.3483678000000054};
-            Rental rental3 = new Rental { ID = 3, Capacity = 2, PricePerNight = 120, PropertyType = PropertyType.House, Description = "Desc3", Address = "Corniche Verte", number = 9, PostalCode = 1150, City = "Woluwe-Saint-Pierre", Country = "Belgium", Latitude = 50.8293766, Longitude = 4.467397600000027 };
-            Rental rental4 = new Rental { ID = 4, Capacity = 5, PricePerNight = 75, PropertyType = PropertyType.Chalet, Description = "Desc4", Address = "Rue d'Irlande", number = 57, PostalCode = 1060, City = "Sint-Gilles", Country = "Belgium", Latitude = 50.825885, Longitude = 4.351920 };
-            Rental rental5 = new Rental { ID = 5, Capacity = 3, PricePerNight = 200, PropertyType = PropertyType.Apartment, Description = "Desc5", Address = "Rue des Champs Elysées", number = 15, PostalCode = 1050, City = "Ixelles", Country = "Belgium", Latitude = 50.831795, Longitude = 4.365922 };
+            Rental rental1 = new Rental { ID = 1, Owner = user5Id, Capacity = 2, PricePerNight = 80, PropertyType = PropertyType.House, Description = "Desc1", Address = "chemin de putdael", number = 12, PostalCode = 1160, City = "Auderghem", Country = "Belgium", Latitude = 50.8193813, Longitude = 4.439141500000005 };
+            Rental rental2 = new Rental { ID = 2, Owner = user1Id, Capacity = 1, PricePerNight = 60, PropertyType = PropertyType.Apartment, Description = "Desc2", Address = "rue Auguste Orts", number = 25, PostalCode = 1000, City = "Bruxelles", Country = "Belgium", Latitude = 50.8488048, Longitude = 4.3483678000000054 };
+            Rental rental3 = new Rental { ID = 3, Owner = user3Id, Capacity = 2, PricePerNight = 120, PropertyType = PropertyType.Chalet, Description = "Desc3", Address = "Corniche Verte", number = 9, PostalCode = 1150, City = "Woluwe-Saint-Pierre", Country = "Belgium", Latitude = 50.8293766, Longitude = 4.467397600000027 };
+            Rental rental4 = new Rental { ID = 4, Owner = user4Id, Capacity = 5, PricePerNight = 75, PropertyType = PropertyType.House, Description = "Desc4", Address = "Rue d'Irlande", number = 57, PostalCode = 1060, City = "Sint-Gilles", Country = "Belgium", Latitude = 50.825885, Longitude = 4.351920 };
+            Rental rental5 = new Rental { ID = 5, Owner = user2Id, Capacity = 3, PricePerNight = 200, PropertyType = PropertyType.Apartment, Description = "Desc5", Address = "Rue des Champs Elysées", number = 15, PostalCode = 1050, City = "Ixelles", Country = "Belgium", Latitude = 50.831795, Longitude = 4.365922 };
 
             Photo photo1 = new Photo{ID=1,PathImage="~/images/1/1.jpg",Rental=rental1};
             Photo photo2 = new Photo{ID=2,PathImage="~/images/1/2.jpg",Rental=rental1};
@@ -146,10 +155,6 @@ namespace HomeRental.DAL
             //***************************************
             //Seed Data in Reservation Context (Table)
             //****************************************
-
-            string user1Id = UserManager.FindByName("user1").Id;
-            string user2Id = UserManager.FindByName("user2").Id;
-            string user3Id = UserManager.FindByName("user3").Id;
 
             var Reservations = new List<Reservation>
             {

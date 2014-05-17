@@ -14,12 +14,10 @@ namespace HomeRental.Models
     }
     public class Rental
     {
-        public Rental()
-        {
-            Reservations = new List<Reservation>();
-            Photos = new List<Photo>();
-        }
         public int ID { get; set; }
+        public string Owner { get; set; }
+        [ForeignKey("Owner")]
+        public virtual ApplicationUser OwnerUser { get; set; } 
         [Required] 
         public int Capacity { get; set; }
         [Required] 

@@ -12,9 +12,11 @@ namespace HomeRental.Models
     public class RentalView
     {
         public int ID { get; set; }
-        [Required] 
+        public string Owner { get; set; }
+        [ForeignKey("Owner")]
+        public virtual ApplicationUser OwnerUser { get; set; }
         public int Capacity { get; set; }
-        [Required] 
+        [Required]
         [Column("Price per night")]
         public int PricePerNight { get; set; }
         [Required]
@@ -22,7 +24,7 @@ namespace HomeRental.Models
         public PropertyType PropertyType { get; set; }
         [Required]
         [MaxLength(200)]
-        public string Description { get; set; } 
+        public string Description { get; set; }
         [Required]
         [MaxLength(100)]
         public string Address { get; set; }
@@ -33,9 +35,9 @@ namespace HomeRental.Models
         [Column("Postal Code")]
         [Range(0, 99999)]
         public int PostalCode { get; set; }
-        [Required] 
+        [Required]
         public string City { get; set; }
-        [Required] 
+        [Required]
         public string Country { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
