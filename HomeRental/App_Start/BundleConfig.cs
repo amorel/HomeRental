@@ -22,11 +22,14 @@ namespace HomeRental
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/bootstrap-slider.js",
+                      "~/Scripts/bootstrap-select.js",
                       "~/Scripts/lazy-bootstrap-carousel-v3.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-select.css",
                       "~/Content/datepicker.css",
                       "~/Content/site.css"));
         }

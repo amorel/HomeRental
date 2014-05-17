@@ -237,10 +237,12 @@
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
+    <Content Include="Scripts\bootstrap-slider.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\pagesearch.less" />
     <Content Include="Content\pagehome.less" />
+    <Content Include="Content\slider.less" />
     <None Include="Properties\PublishProfiles\HomeRental-Azure.pubxml" />
     <None Include="Properties\PublishProfiles\HomeRental-Somee.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
