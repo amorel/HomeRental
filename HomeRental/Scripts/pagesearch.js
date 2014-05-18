@@ -34,14 +34,16 @@ function getAjaxDataLocationInArea() {
 
     $(".contentLoad").show();
 
-    var datecheckin = $("#checkin").val().length = 9 ? "0" + $("#checkin").val() : $("#checkin").val();
-    var datecheckout = $("#checkout").val().length = 9 ? "0" + $("#checkout").val() : $("#checkout").val();
+    var datecheckin = $("#checkin").val();
+    var datecheckout = $("#checkout").val();
+
+    var rangePrice = $('#slider-price').data('slider').getValue();
 
     var request = {
         bounds: { northEastLatLng: { Lat: bnds.Aa.j, Lng: bnds.ra.k }, southWestLatLng: { Lat: bnds.Aa.k, Lng: bnds.ra.j } },
-        checkin: datecheckin.substr(3, 3) + datecheckin.substr(0, 3) + datecheckin.substr(6, 4),
-        checkout: datecheckout.substr(3, 3) + datecheckout.substr(0, 3) + datecheckout.substr(6, 4),
-        guests: $("#guests").val(),
+        checkin: datecheckin.substr(3, 2) + "/" + datecheckin.substr(0, 2) + "/" + datecheckin.substr(6, 4),
+        checkout: datecheckout.substr(3, 2) + "/" + datecheckout.substr(0, 2) + "/" + datecheckout.substr(6, 4),
+        guests: $(".selectpicker").val(),
         rangePrice: $('#slider-price').data('slider').getValue()
     };
 

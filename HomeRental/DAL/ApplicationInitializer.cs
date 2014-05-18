@@ -158,9 +158,9 @@ namespace HomeRental.DAL
 
             var Reservations = new List<Reservation>
             {
-                new Reservation{ID=1,ApplicationUserId=user1Id,RentalId=1,StartingDate=DateTime.Parse("2014-01-08"),EndDate=DateTime.Parse("2014-05-08")},
-                new Reservation{ID=2,ApplicationUserId=user2Id,RentalId=2,StartingDate=DateTime.Parse("2014-12-08"),EndDate=DateTime.Parse("2014-05-20")},
-                new Reservation{ID=3,ApplicationUserId=user3Id,RentalId=3,StartingDate=DateTime.Parse("2014-06-07"),EndDate=DateTime.Parse("2014-05-07")},
+                new Reservation{ID=1,ApplicationUserId=user1Id,RentalId=1,StartingDate=DateTime.Parse("2014-08-01"),EndDate=DateTime.Parse("2014-08-27")},
+                new Reservation{ID=2,ApplicationUserId=user2Id,RentalId=2,StartingDate=DateTime.Parse("2014-09-01"),EndDate=DateTime.Parse("2014-09-27")},
+                new Reservation{ID=3,ApplicationUserId=user3Id,RentalId=3,StartingDate=DateTime.Parse("2014-10-01"),EndDate=DateTime.Parse("2014-10-27")},
             };
             Reservations.ForEach(s => context.Reservations.Add(s));
 

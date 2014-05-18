@@ -23,27 +23,29 @@ namespace HomeRental.Controllers
         public ActionResult AjaxView(RequestSearchAjax requestSearchAjax)
         {
             Bounds bnds = requestSearchAjax.bounds;
-            var rentals = from r in db.Rentals
-                            where   r.Latitude < bnds.northEastLatLng.Lat &&
-                                    r.Latitude > bnds.southWestLatLng.Lat &&
-                                    r.Longitude < bnds.northEastLatLng.Lng &&
-                                    r.Longitude > bnds.southWestLatLng.Lng
+            var rentals = from rent in db.Rentals
+                            where   rent.Latitude < bnds.northEastLatLng.Lat &&
+                                    rent.Latitude > bnds.southWestLatLng.Lat &&
+                                    rent.Longitude < bnds.northEastLatLng.Lng &&
+                                    rent.Longitude > bnds.southWestLatLng.Lng &&
+                                    rent.Capacity >= requestSearchAjax.guests &&
+                                    rent.Reservations.Where(d => d.StartingDate <= requestSearchAjax.checkin && d.EndDate >= requestSearchAjax.checkout).Count() > 0
                             select new RentalView {
-                                ID = r.ID,
-                                OwnerUser = r.OwnerUser,
-                                Capacity = r.Capacity,
-                                PricePerNight = r.PricePerNight,
-                                PropertyType = r.PropertyType,
-                                Description = r.Description,
-                                Address = r.Address,
-                                number = r.number,
-                                PostalCode = r.PostalCode,
-                                City = r.City,
-                                Country = r.Country,
-                                Latitude = r.Latitude,
-                                Longitude = r.Longitude,
-                                Reservations = r.Reservations,
-                                Photos = r.Photos
+                                ID = rent.ID,
+                                OwnerUser = rent.OwnerUser,
+                                Capacity = rent.Capacity,
+                                PricePerNight = rent.PricePerNight,
+                                PropertyType = rent.PropertyType,
+                                Description = rent.Description,
+                                Address = rent.Address,
+                                number = rent.number,
+                                PostalCode = rent.PostalCode,
+                                City = rent.City,
+                                Country = rent.Country,
+                                Latitude = rent.Latitude,
+                                Longitude = rent.Longitude,
+                                Reservations = rent.Reservations,
+                                Photos = rent.Photos
                             };
 
             return View(rentals);
