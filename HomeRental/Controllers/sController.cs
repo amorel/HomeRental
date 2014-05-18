@@ -40,6 +40,8 @@ namespace HomeRental.Controllers
                                   rent.Longitude < bnds.northEastLatLng.Lng &&
                                   rent.Longitude > bnds.southWestLatLng.Lng &&
                                   rent.Capacity >= requestSearchAjax.guests &&
+                                  rent.PricePerNight >= requestSearchAjax.minPrice &&
+                                  rent.PricePerNight <= requestSearchAjax.maxPrice &&
                                   rent.Reservations.Where(res => (requestSearchAjax.checkin >= res.StartingDate && requestSearchAjax.checkin <= res.EndDate) ||
                                                                  (requestSearchAjax.checkout >= res.StartingDate && requestSearchAjax.checkout <= res.EndDate) ||
                                                                  (requestSearchAjax.checkin <= res.StartingDate && requestSearchAjax.checkout >= res.EndDate)).Count() == 0

@@ -11,6 +11,7 @@ namespace HomeRental.Models.SubModels
         public DateTime? checkin { get; set; }
         public DateTime? checkout { get; set; }
         public int? guests { get; set; }
-        public int[] rangePrice { get; set; } 
+        public int minPrice { get; set; }
+        public int maxPrice { get; set; } 
     }
 }

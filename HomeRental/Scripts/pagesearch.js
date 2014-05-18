@@ -50,7 +50,8 @@ function getAjaxDataLocationInArea() {
         checkin: datecheckin.substr(3, 2) + "/" + datecheckin.substr(0, 2) + "/" + datecheckin.substr(6, 4),
         checkout: datecheckout.substr(3, 2) + "/" + datecheckout.substr(0, 2) + "/" + datecheckout.substr(6, 4),
         guests: $(".selectpicker").val(),
-        rangePrice: $('#slider-price').data('slider').getValue()
+        minPrice: rangePrice[0],
+        maxPrice: rangePrice[1]
     };
 
     $.ajax({
@@ -83,7 +84,7 @@ function getAddress() {
     //Regex to get address parameter
     var patt = /\/s\/(.*)\?/g;
     var result = patt.exec(decodeURI(location.href));
-    var address = result!=null?result[1]:"";
+    var address = result != null ? result[1] : "";
     //convert address "Chaussée-de-Wavre-17--Brussels--Belgium" => "Chaussée de Wavre 17, Brussels, Belgium"
     address = address.replace(/---/g, "/");
     address = address.replace(/--/g, ", ");
@@ -110,9 +111,7 @@ function filterpara(checkin, checkout, guests) {
         if (checkout != "") {
             var date = new Date(checkout.substring(3, 5) + "/" + checkout.substring(0, 2) + "/" + checkout.substring(6, 10));
             $('#checkout').datepicker('setValue', date);
-
         }
-
     }
         //Select of the correct date parameter on Hosting server
     else if (checkin != "") {
