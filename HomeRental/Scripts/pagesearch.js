@@ -16,6 +16,12 @@ jQuery(document).ready(function () {
     $(".selectpicker").change(function () {
         getAjaxDataLocationInArea();
     });
+    $("#checkin").change(function () {
+        getAjaxDataLocationInArea();
+    });
+    $("#checkout").change(function () {
+        getAjaxDataLocationInArea();
+    });
 });
 
 function addMarker(Lat, Lng) {
@@ -77,7 +83,7 @@ function getAddress() {
     //Regex to get address parameter
     var patt = /\/s\/(.*)\?/g;
     var result = patt.exec(decodeURI(location.href));
-    var address = result[1];
+    var address = result!=null?result[1]:"";
     //convert address "Chaussée-de-Wavre-17--Brussels--Belgium" => "Chaussée de Wavre 17, Brussels, Belgium"
     address = address.replace(/---/g, "/");
     address = address.replace(/--/g, ", ");

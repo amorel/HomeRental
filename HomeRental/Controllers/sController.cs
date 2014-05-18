@@ -22,31 +22,45 @@ namespace HomeRental.Controllers
         [Route("LocationInAreaAjax")]
         public ActionResult AjaxView(RequestSearchAjax requestSearchAjax)
         {
+            if (requestSearchAjax.checkin == null)
+                if (requestSearchAjax.checkout != null)
+                {
+                    requestSearchAjax.checkout = requestSearchAjax.checkin;
+                }
+                else
+                {
+                    requestSearchAjax.checkin = DateTime.Now;
+                }
+            if (requestSearchAjax.checkout == null) requestSearchAjax.checkout = DateTime.Now;
+
             Bounds bnds = requestSearchAjax.bounds;
             var rentals = from rent in db.Rentals
-                            where   rent.Latitude < bnds.northEastLatLng.Lat &&
-                                    rent.Latitude > bnds.southWestLatLng.Lat &&
-                                    rent.Longitude < bnds.northEastLatLng.Lng &&
-                                    rent.Longitude > bnds.southWestLatLng.Lng &&
-                                    rent.Capacity >= requestSearchAjax.guests &&
-                                    rent.Reservations.Where(d => d.StartingDate <= requestSearchAjax.checkin && d.EndDate >= requestSearchAjax.checkout).Count() > 0
-                            select new RentalView {
-                                ID = rent.ID,
-                                OwnerUser = rent.OwnerUser,
-                                Capacity = rent.Capacity,
-                                PricePerNight = rent.PricePerNight,
-                                PropertyType = rent.PropertyType,
-                                Description = rent.Description,
-                                Address = rent.Address,
-                                number = rent.number,
-                                PostalCode = rent.PostalCode,
-                                City = rent.City,
-                                Country = rent.Country,
-                                Latitude = rent.Latitude,
-                                Longitude = rent.Longitude,
-                                Reservations = rent.Reservations,
-                                Photos = rent.Photos
-                            };
+                          where rent.Latitude < bnds.northEastLatLng.Lat &&
+                                  rent.Latitude > bnds.southWestLatLng.Lat &&
+                                  rent.Longitude < bnds.northEastLatLng.Lng &&
+                                  rent.Longitude > bnds.southWestLatLng.Lng &&
+                                  rent.Capacity >= requestSearchAjax.guests &&
+                                  rent.Reservations.Where(res => (requestSearchAjax.checkin >= res.StartingDate && requestSearchAjax.checkin <= res.EndDate) ||
+                                                                 (requestSearchAjax.checkout >= res.StartingDate && requestSearchAjax.checkout <= res.EndDate) ||
+                                                                 (requestSearchAjax.checkin <= res.StartingDate && requestSearchAjax.checkout >= res.EndDate)).Count() == 0
+                          select new RentalView
+                          {
+                              ID = rent.ID,
+                              OwnerUser = rent.OwnerUser,
+                              Capacity = rent.Capacity,
+                              PricePerNight = rent.PricePerNight,
+                              PropertyType = rent.PropertyType,
+                              Description = rent.Description,
+                              Address = rent.Address,
+                              number = rent.number,
+                              PostalCode = rent.PostalCode,
+                              City = rent.City,
+                              Country = rent.Country,
+                              Latitude = rent.Latitude,
+                              Longitude = rent.Longitude,
+                              Reservations = rent.Reservations,
+                              Photos = rent.Photos
+                          };
 
             return View(rentals);
         }
@@ -87,7 +101,7 @@ namespace HomeRental.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Capacity,GroupPhotoId,PropertyType,Description,Address,PostalCode,City,Country,Longitude,Latitude")] Rental rental)
+        public ActionResult Create([Bind(Include = "ID,Capacity,GroupPhotoId,PropertyType,Description,Address,PostalCode,City,Country,Longitude,Latitude")] Rental rental)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +133,7 @@ namespace HomeRental.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Capacity,GroupPhotoId,PropertyType,Description,Address,PostalCode,City,Country,Longitude,Latitude")] Rental rental)
+        public ActionResult Edit([Bind(Include = "ID,Capacity,GroupPhotoId,PropertyType,Description,Address,PostalCode,City,Country,Longitude,Latitude")] Rental rental)
         {
             if (ModelState.IsValid)
             {
