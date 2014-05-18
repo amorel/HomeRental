@@ -9,11 +9,16 @@ jQuery(document).ready(function () {
     $("#gly2").click(function () { $("#checkout").focus(); });
     $("#pac-input").val(getAddress());
     initializeGoogleMaps();
-    $("#ex2").slider();
+    $('#slider-price').slider()
+        .on('slideStop', function (ev) {
+            getAjaxDataLocationInArea();
+        });
+    $(".selectpicker").change(function () {
+        getAjaxDataLocationInArea();
+    });
 });
 
-function addMarker(Lat, Lng)
-{
+function addMarker(Lat, Lng) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(Lat.replace(/\,/g, '.'), Lng.replace(/\,/g, '.')),
         map: map
@@ -23,18 +28,21 @@ function addMarker(Lat, Lng)
 /*
 *  Ajax method that retrieves data locations found in the area.
 */
-function getAjaxDataLocationInArea(bnds) {
+function getAjaxDataLocationInArea() {
+
+    var bnds = map.getBounds();
 
     $(".contentLoad").show();
 
     var datecheckin = $("#checkin").val().length = 9 ? "0" + $("#checkin").val() : $("#checkin").val();
     var datecheckout = $("#checkout").val().length = 9 ? "0" + $("#checkout").val() : $("#checkout").val();
-    
+
     var request = {
         bounds: { northEastLatLng: { Lat: bnds.Aa.j, Lng: bnds.ra.k }, southWestLatLng: { Lat: bnds.Aa.k, Lng: bnds.ra.j } },
         checkin: datecheckin.substr(3, 3) + datecheckin.substr(0, 3) + datecheckin.substr(6, 4),
         checkout: datecheckout.substr(3, 3) + datecheckout.substr(0, 3) + datecheckout.substr(6, 4),
-        guests: $("#guests").val()
+        guests: $("#guests").val(),
+        rangePrice: $('#slider-price').data('slider').getValue()
     };
 
     $.ajax({
@@ -98,7 +106,7 @@ function filterpara(checkin, checkout, guests) {
         }
 
     }
-    //Select of the correct date parameter on Hosting server
+        //Select of the correct date parameter on Hosting server
     else if (checkin != "") {
         $("#checkin").val(checkin);
 
@@ -129,6 +137,7 @@ function initdatepick() {
         }
         checkin.hide();
         $('#checkout')[0].focus();
+        getAjaxDataLocationInArea();
     }).data('datepicker');
 
     var checkout = $('#checkout').datepicker({
@@ -137,6 +146,7 @@ function initdatepick() {
         }
     }).on('changeDate', function (ev) {
         checkout.hide();
+        getAjaxDataLocationInArea();
     }).data('datepicker');
 }
 
@@ -189,7 +199,7 @@ function initializeGoogleMaps() {
             map.setCenter(place.geometry.location);
             map.setZoom(17);
         }
-        
+
         var address = '';
         if (place.address_components) {
             address = [
@@ -201,6 +211,6 @@ function initializeGoogleMaps() {
     });
 
     google.maps.event.addListener(map, 'idle', function () {
-        getAjaxDataLocationInArea(map.getBounds());
+        getAjaxDataLocationInArea();
     });
 }
