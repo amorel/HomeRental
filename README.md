@@ -2,6 +2,8 @@
 
 ##DEMO
 
+Deployed on Azure => <http://homerental.azurewebsites.net>
+
 This is a professional .NET C# project, a DEMO site made with ASP.NET MVC 5.
 
 I took inspiration from Airbnb site to make this website. It allowed me to learn about each challenge it represents to make an application like this.

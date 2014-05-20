@@ -46,7 +46,7 @@ function getAjaxDataLocationInArea() {
     var rangePrice = $('#slider-price').data('slider').getValue();
 
     var request = {
-        bounds: { northEastLatLng: { Lat: bnds.Aa.j, Lng: bnds.ra.k }, southWestLatLng: { Lat: bnds.Aa.k, Lng: bnds.ra.j } },
+        bounds: { northEastLatLng: { Lat: bnds.Ba.j, Lng: bnds.ra.k }, southWestLatLng: { Lat: bnds.Ba.k, Lng: bnds.ra.j } },
         checkin: datecheckin.substr(3, 2) + "/" + datecheckin.substr(0, 2) + "/" + datecheckin.substr(6, 4),
         checkout: datecheckout.substr(3, 2) + "/" + datecheckout.substr(0, 2) + "/" + datecheckout.substr(6, 4),
         guests: $(".selectpicker").val(),
