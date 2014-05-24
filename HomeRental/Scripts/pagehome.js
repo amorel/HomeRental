@@ -8,6 +8,8 @@ jQuery(document).ready(function () {
     initselpick();
     initdatepick();
     initialize();
+    $("#checkin").mask("99/99/9999");
+    $("#checkout").mask("99/99/9999");
 });
 
 

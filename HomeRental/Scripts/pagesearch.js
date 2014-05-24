@@ -18,10 +18,10 @@ jQuery(document).ready(function () {
     });
     $("#checkin").change(function () {
         getAjaxDataLocationInArea();
-    });
+    }).mask("99/99/9999");
     $("#checkout").change(function () {
         getAjaxDataLocationInArea();
-    });
+    }).mask("99/99/9999");
 });
 
 function addMarker(Lat, Lng) {
