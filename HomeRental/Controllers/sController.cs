@@ -69,11 +69,8 @@ namespace HomeRental.Controllers
 
         // GET: /s/
         [Route("{address?}")]
-        public ViewResult Index(cQueryString cquerystring)
+        public ViewResult Index()
         {
-            ViewBag.checkinShortDate = cquerystring.getShortDateCheckin();
-            ViewBag.checkoutShortDate = cquerystring.getShortDateCheckout();
-            ViewBag.guests = cquerystring.guests;
             return View();
         }
 

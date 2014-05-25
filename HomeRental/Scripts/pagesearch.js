@@ -3,7 +3,7 @@
 * Onload features
 */
 jQuery(document).ready(function () {
-
+    filterpara();
     $("#submitsearch").click(function () { submitresearch(); });
     $("#gly1").click(function () { $("#checkin").focus(); });
     $("#gly2").click(function () { $("#checkout").focus(); });
@@ -24,6 +24,39 @@ jQuery(document).ready(function () {
     }).mask("99/99/9999");
 });
 
+
+/*
+*  Get URL parameters.
+*  QueryString.[parameter] or QueryString.locationStr for parameter before '?'. 
+*/
+var QueryString = function () {
+    // This function is anonymous, is executed immediately and 
+    // the return value is assigned to QueryString!
+    var query_string = {};
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        // If first entry with this name
+        if (typeof query_string[pair[0]] === "undefined") {
+            query_string[pair[0]] = pair[1];
+            // If second entry with this name
+        } else if (typeof query_string[pair[0]] === "string") {
+            var arr = [query_string[pair[0]], pair[1]];
+            query_string[pair[0]] = arr;
+            // If third or later entry with this name
+        } else {
+            query_string[pair[0]].push(pair[1]);
+        }
+    }
+    var pathname = window.location.pathname;
+    query_string["locationStr"] = pathname.replace(/\/s\//g, '');
+    return query_string;
+}();
+
+/*
+*  Add marker
+*/
 function addMarker(Lat, Lng) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(Lat.replace(/\,/g, '.'), Lng.replace(/\,/g, '.')),
@@ -95,7 +128,12 @@ function getAddress() {
 /*
 *  Selection of the correct parameter Datepicker & selectpicker (nb Guests)
 */
-function filterpara(checkin, checkout, guests) {
+function filterpara() {
+
+    var checkin = QueryString.checkin;
+    var checkout = QueryString.checkout;
+    var guests = QueryString.guests;
+
     //init datepicker
     initdatepick();
 
@@ -103,24 +141,8 @@ function filterpara(checkin, checkout, guests) {
     $('.selectpicker').val(guests);
     $('.selectpicker').selectpicker('render');
 
-    //Select of the correct date parameter on localhost
-    if (checkin != "" && document.location.hostname == "localhost") {
-        var date = new Date(checkin.substring(3, 5) + "/" + checkin.substring(0, 2) + "/" + checkin.substring(6, 10));
-        $('#checkin').datepicker('setValue', date);
-
-        if (checkout != "") {
-            var date = new Date(checkout.substring(3, 5) + "/" + checkout.substring(0, 2) + "/" + checkout.substring(6, 10));
-            $('#checkout').datepicker('setValue', date);
-        }
-    }
-        //Select of the correct date parameter on Hosting server
-    else if (checkin != "") {
-        $("#checkin").val(checkin);
-
-        if (checkout != "") {
-            $('#checkout').val(checkout);
-        }
-    }
+    $('#checkin').datepicker('setValue', checkin);
+    $('#checkout').datepicker('setValue', checkout);
 }
 
 /*
