@@ -1,6 +1,6 @@
 # HomeRental (under construction)
 
-##[DEMO](http://homerental.azurewebsites.net) (Deployed on Azure )
+##[*DEMO ( Deployed on Azure )*](http://homerental.azurewebsites.net)
 
 This is a professional .NET C# project, a DEMO site made with ASP.NET MVC 5.
 
