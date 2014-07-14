@@ -10,18 +10,19 @@ HomeRental is a website for people to rent out lodging, including private rooms,
 
 ## This project use:
 -	C# ASP.NET MVC 5
--	Entity Framework (ORM)
+-	Entity Framework 6 (ORM)
 -	Code First approach
+-	SQL Server Compact
 -	Identity (Security)
 -	DatabaseInitializer to seed database
 -	Data Annotations
 -	Attribute Routing (New system routing with ‘Annotation’ since MVC 5)
 -	Google Map API – Google Place API (Autocomplete)
 -	Bootstrap
--	[Bootstrap select](http://silviomoreto.github.io/bootstrap-select/)
--	[Bootstrap datepicker](http://www.eyecon.ro/bootstrap-datepicker/)
--	[Bootstrap slider](http://www.eyecon.ro/bootstrap-slider/)
--	[Gravatar](https://en.gravatar.com/)
+-	[[Bootstrap select]](http://silviomoreto.github.io/bootstrap-select/)
+-	[[Bootstrap datepicker]](http://www.eyecon.ro/bootstrap-datepicker/)
+-	[[Bootstrap slider]](http://www.eyecon.ro/bootstrap-slider/)
+-	[[Gravatar]](https://en.gravatar.com/)
 -	Less (DotLess) 
 -	Linq
 
